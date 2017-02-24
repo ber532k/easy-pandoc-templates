@@ -1,12 +1,19 @@
-\documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$babel-lang$,$endif$$if(papersize)$$papersize$paper,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
-$if(beamerarticle)$
-\usepackage{beamerarticle} % needs to be loaded first
-$endif$
+\documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$babel-lang$,$endif$$if(papersize)$$papersize$paper,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{article}
 $if(fontfamily)$
 \usepackage[$for(fontfamilyoptions)$$fontfamilyoptions$$sep$,$endfor$]{$fontfamily$}
 $else$
 \usepackage{lmodern}
 $endif$
+\usepackage{csquotes}
+\usepackage{relsize,etoolbox}
+\AtBeginEnvironment{quote}{\smaller}
+$if(append)$
+\usepackage{pdfpages}
+$else$$if(titlepage)$
+\usepackage{pdfpages}
+$else$$if(titlepages)$
+\usepackage{pdfpages}
+$endif$$endif$$endif$
 $if(linestretch)$
 \usepackage{setspace}
 \setstretch{$linestretch$}
@@ -21,6 +28,7 @@ $if(euro)$
   \usepackage{eurosym}
 $endif$
 \else % if luatex or xelatex
+\usepackage{fontspec}
 $if(mathspec)$
   \ifxetex
     \usepackage{mathspec}
@@ -39,6 +47,8 @@ $if(euro)$
 $endif$
 $if(mainfont)$
     \setmainfont[$for(mainfontoptions)$$mainfontoptions$$sep$,$endfor$]{$mainfont$}
+$else$
+    \setmainfont{Liberation Serif}
 $endif$
 $if(sansfont)$
     \setsansfont[$for(sansfontoptions)$$sansfontoptions$$sep$,$endfor$]{$sansfont$}
@@ -78,15 +88,19 @@ $if(colorlinks)$
 \PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
 $endif$
 \hypersetup{
-$if(title-meta)$
-            pdftitle={$title-meta$},
-$endif$
-$if(author-meta)$
-            pdfauthor={$author-meta$},
-$endif$
-$if(keywords)$
-            pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$},
-$endif$
+ $if(title)$
+            pdftitle={$title$
+	      $if(subtitle)$
+		: $subtitle$
+              $endif$
+            },
+ $endif$
+ $if(author)$
+            pdfauthor={$for(author)$$author$$sep$, $endfor$},
+ $endif$
+ $if(keywords)$
+             pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$},
+ $endif$
 $if(colorlinks)$
             colorlinks=true,
             linkcolor=$if(linkcolor)$$linkcolor$$else$Maroon$endif$,
@@ -117,12 +131,9 @@ $for(polyglossia-otherlangs)$
 $endfor$
 \fi
 $endif$
-$if(natbib)$
-\usepackage{natbib}
-\bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
-$endif$
-$if(biblatex)$
-\usepackage[$if(biblio-style)$style=$biblio-style$,$endif$$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$]{biblatex}
+$if(nobiblatex)$
+$else$
+\usepackage[$if(biblio-style)$style=$biblio-style$,$endif$$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$]{$if(biblatex-version)$$biblatex-version$$else$biblatex$endif$}
 $for(bibliography)$
 \addbibresource{$bibliography$}
 $endfor$
@@ -173,11 +184,7 @@ $endif$
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-$if(numbersections)$
 \setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$5$endif$}
-$else$
-\setcounter{secnumdepth}{0}
-$endif$
 $if(subparagraph)$
 $else$
 % Redefines (sub)paragraphs to behave more like sections
@@ -233,10 +240,27 @@ $if(institute)$
 $endif$
 \date{$date$}
 
+$if(titlepage)$
+\renewcommand{\maketitle}{%
+	\includepdf[pages=1]{$titlepage$}
+}
+$else$$if(titlepages)$
+\renewcommand{\maketitle}{%
+	\includepdf[pages=-]{$titlepages$}
+}
+$endif$$endif$
+
+
+
 \begin{document}
 $if(title)$
 \maketitle
-$endif$
+$else$$if(titlepage)$
+\maketitle
+$else$$if(titlepages)$
+\maketitle
+$endif$$endif$$endif$
+
 $if(abstract)$
 \begin{abstract}
 $abstract$
@@ -247,40 +271,75 @@ $for(include-before)$
 $include-before$
 
 $endfor$
-$if(toc)$
+$if(notoc)$
+$else$
+\providecommand{\tocend}{}
 {
 $if(colorlinks)$
 \hypersetup{linkcolor=$if(toccolor)$$toccolor$$else$black$endif$}
 $endif$
-\setcounter{tocdepth}{$toc-depth$}
+\setcounter{tocdepth}{$if(toc-depth)$$toc-depth$$else$5$endif$}
 \tableofcontents
 }
+\renewcommand{\tocend}{\newpage}
 $endif$
 $if(lot)$
 \listoftables
+\renewcommand{\tocend}{\newpage}
 $endif$
 $if(lof)$
 \listoffigures
+\renewcommand{\tocend}{\newpage}
 $endif$
+\tocend
+
 $body$
 
-$if(natbib)$
-$if(bibliography)$
-$if(biblio-title)$
-$if(book-class)$
-\renewcommand\bibname{$biblio-title$}
+$if(nobiblatex)$$else$$if(bibliography)$
+\newpage
+$if(biblio-title)$\renewcommand{\bibname}{$biblio-title$}$endif$
+\section{\bibname}
+$if(splitbib)$
+$for(splitbib)$
+\subsection{$splitbib.title$}
+\printbibliography[heading=none,$splitbib.rule$]
+
+$endfor$
 $else$
-\renewcommand\refname{$biblio-title$}
-$endif$
-$endif$
-\bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
+\printbibliography[heading=none]
 
-$endif$
-$endif$
-$if(biblatex)$
-\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
+$endif$$endif$$endif$
 
+$if(append)$
+\newpage
+$if(appendix-title)$\renewcommand{\appendixname}{$appendix-title$}$endif$
+\section{\appendixname}
+\begin{itemize}
+%\tightlist
+$for(append)$$if(append.title)$
+\item
+	$append.title$
+$endif$$endfor$
+\end{itemize}
+
+$for(append)$
+\newpage
+$if(append.title)$
+\addtocounter{subsection}{1}\phantomsection
+\addcontentsline{toc}{subsection}{\protect\numberline{\thesubsection}$append.title$}
+\label{$if(append.label)$$append.label$$else$$append.title$$endif$}
 $endif$
+$if(append.file)$
+\includepdf[%
+	$if(append.pages)$pages={$append.pages$}$else$pages=-$endif$%
+	]{$append.file$}
+$else$
+\texttt{Missing file for appendix $append.title$}
+$endif$
+$endfor$
+$endif$
+
+
 $for(include-after)$
 $include-after$
 
