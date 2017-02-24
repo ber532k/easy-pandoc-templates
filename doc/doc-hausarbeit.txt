@@ -1,46 +1,9 @@
 ---
-title: Reference guide for header variables to use with hausarbeit.latex
+title: Reference guide for header variables to use with easy-pandoc-templates
 author: <ber532k@gmx.de>
 ...
 
-
-# How to use variables
-
-Variables may be specified inside a YAML-style header in order to customize the output pandoc
-generates via the easy.hausarbeit.latex template. Simple variables may be specified as follows:
-
-```
----
-author: Max Mustermann
-title: Some Document
-...
-```
-
-If a variable allows for multiple values to be specified (as do bibliography, author or institute,
-for example) these multiple values may be specified using the following syntax:
-
-```
----
-bibliography:
-  - books.bib
-  - journals.bib
-...
-```
-
-There are also instances where subvariables are used. These are referred to as variable.subvariable
-in this reference guide (e.g. append.title or append.file) and may be specified as:
-
-```
----
-append:
-  - title: The pandoc man pages as pdf
-    file:  pandoc.pdf
-  - title: Why to use markdown
-    file:  why_markdown.pdf
-...
-```
-
-# Available variables
+# General settings
 
 ## Appearance
 
