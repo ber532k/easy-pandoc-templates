@@ -1,0 +1,15 @@
+---
+title: Reference guide for header variables to use with easy-pandoc-templates
+author: <ber532k@gmx.de>
+...
+
+# Extension: Titlepage
+
+titlepage
+: Use the first page of a given pdf file as titlepage rather than some automatically generated one.
+  Value: filename.pdf
+
+titlepages
+: Use all pages of a given pdf as titlepages.
+  Value: filename.pdf
+

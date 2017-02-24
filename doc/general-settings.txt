@@ -1,0 +1,101 @@
+---
+title: Reference guide for header variables to use with easy-pandoc-templates
+author: <ber532k@gmx.de>
+...
+
+# General settings / Standard options
+
+## Appearance
+
+papersize
+: e.g. a4, a5, letter
+
+margin-top, margin-left, margin-right, margin-bottom
+: set margin size, e.g. 1in, 2cm, 30pt
+
+fontsize
+: set main font size, e.g. 10pt
+
+linestretch
+: set spacing between lines (e.g. 1 or 1.5)
+
+lang
+: Set main language of document.
+  This affects the default naming of table of contents, bibliography, appendix etc.
+  e.g. de-DE, en-GB, en-US
+
+## Metadata
+
+The following fields behave as expected. Some also add data to pdf-metadata.
+They might still not show up in the actual pdf, especially if titlepage(s) is used.
+
+- author
+- institute
+- title
+- subtitle
+- date
+
+
+## Document Structure
+
+### Contents
+
+secnumdepth
+: Until what level shall sections be numbered.
+  Value: number (no numbering: 0)
+
+toc
+: Include a table of contents at the beginning of the document.
+  Value: true or empty [true| ]
+
+notoc
+: In case a table of contents is used as the template default, this
+  setting overrides that. Value: true or empty [true| ]
+
+toc-depth
+: Until what level shall sections be included in the table of contents.
+  Value: number (optional, default: 5)
+
+lof
+: Include a list of figures at the beginning of the document.
+  Value: true or empty [true| ]
+
+nolof
+: In case a list of figures is used as the template default, this
+  setting overrides that. Value: true or empty [true| ]
+
+lot
+: Include a list of tables at the beginning of the document.
+  Value: true or empty [true| ]
+
+nolot
+: In case a list of tables is used as the template default, this
+  setting overrides that. Value: true or empty [true| ]
+
+### Bibliography
+
+nobiblatex
+: Biblatex is usually used by default by most templates. Set this
+  to true in order not ro use biblatex to create a bibliography.
+  Value: true or empty [true| ]
+
+biblatex-version
+: Use something else than standard biblatex to process citations.
+  E.g. biblatex-chicago. Make sure the biblatexoptions work with
+  the special version of biblatex.
+
+biblatexoptions
+: Refer to biblatex documentation for further explanation.
+
+biblio-title
+: Use the following title for bibliography rather than some default.
+
+bibliography
+: Use the following biblatex files to resolve citation keys.
+  Value: filename.bib (setting multiple values is supported)
+
+
+
+
+
+

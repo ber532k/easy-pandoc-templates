@@ -1,0 +1,22 @@
+---
+title: Reference guide for header variables to use with easy-pandoc-templates
+author: <ber532k@gmx.de>
+...
+
+# Extension: Splitbib
+
+splitbib
+: Splitbib allows to split the bibliography into multiple sections, each with their own
+  subheading. If you want to use splitbib you have to define the following subvariables
+  to splitbib.
+
+splitbib.title:
+: The title for this bibliographic subcategory.
+
+splitbib.rule:
+: A rule to be passed on to \printbibliography in order to create the subbibliography.
+  Typically this may be something like "keyword=abc,keyword=xyz".
+  Do not forget to make a final category with a rule fetching everything else like
+  e.g. "notkeyword=abc,notkeyword=xyz,notkeyword=..." or else some citations might
+  not appear in your bibliography.
+

@@ -1,0 +1,31 @@
+---
+title: Reference guide for header variables to use with easy-pandoc-templates
+author: <ber532k@gmx.de>
+...
+
+
+# Extension: Appendix
+
+appendix-title
+: Use the following title for appendix rather than some default.
+
+append
+: Include some pdf file as an appendix.
+  Accepts what follows as subvariables. Only file is mandatory.
+
+append.file
+: Value: filename.pdf
+
+append.title
+: A title to use for including this appendix in table of contents and list of appendices.
+  If this is not set, this appendix will not show up in any of these lists.
+
+append.label
+: Set a label to use for cross-referencing inside the document.
+  If empty, the title will be used as a label.
+
+append.pages
+: Only use the following pages  from the given pdf.
+  e.g. "1", "1-4", "1,2,6,7", "5-last", "4-1"
+
+
