@@ -133,7 +133,13 @@ $endfor$
 $endif$
 $if(nobiblatex)$
 $else$
-\usepackage[$if(biblio-style)$style=$biblio-style$,$endif$$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$]{$if(biblatex-version)$$biblatex-version$$else$biblatex$endif$}
+\usepackage[$if(biblio-style)$style=$biblio-style$,$endif$
+	$if(biblatexoptions)$
+	$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$
+	$else$
+	backend=biber,authordate
+	$endif$
+]{$if(biblatex-version)$$biblatex-version$$else$biblatex-chicago$endif$}
 $for(bibliography)$
 \addbibresource{$bibliography$}
 $endfor$
@@ -250,7 +256,14 @@ $else$$if(titlepages)$
 }
 $endif$$endif$
 
-
+% Title and page heads
+\usepackage{titling}
+\pretitle{\begin{center}\LARGE\bfseries\sffamily}
+\posttitle{\par\end{center}\vskip 0.5em}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\rhead{\theauthor}
+\lhead{\thetitle}
 
 \begin{document}
 $if(title)$
