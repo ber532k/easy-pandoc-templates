@@ -184,7 +184,7 @@ $endif$
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$5$endif$}
+\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$0$endif$}
 $if(subparagraph)$
 $else$
 % Redefines (sub)paragraphs to behave more like sections
