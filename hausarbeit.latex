@@ -271,9 +271,10 @@ $for(include-before)$
 $include-before$
 
 $endfor$
+
+\providecommand{\tocend}{}
 $if(notoc)$
 $else$
-\providecommand{\tocend}{}
 {
 $if(colorlinks)$
 \hypersetup{linkcolor=$if(toccolor)$$toccolor$$else$black$endif$}
