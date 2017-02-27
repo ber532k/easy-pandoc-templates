@@ -238,7 +238,8 @@ $if(subtitle)$
 \subtitle{$subtitle$}
 $endif$
 $if(author)$
-\author{$for(author)$$author$$sep$ \and $endfor$}
+\author{{$if(subtitle)$\bfseries$endif$
+	$for(author)$$author$$sep$ \and $endfor$}}
 $endif$
 $if(institute)$
 \providecommand{\institute}[1]{}
@@ -259,7 +260,14 @@ $endif$$endif$
 % Title and page heads
 \usepackage{titling}
 \pretitle{\begin{center}\LARGE\bfseries\sffamily}
-\posttitle{\par\end{center}\vskip 0.5em}
+\posttitle{\par\end{center}\vskip 0.5em
+   $if(subtitle)$
+   	\vskip 0.5em
+	\begin{center}\large
+		$subtitle$
+	\par\end{center}\vskip 1.5em
+   $endif$
+}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \rhead{$author$}
