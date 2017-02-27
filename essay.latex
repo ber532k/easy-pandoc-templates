@@ -262,8 +262,8 @@ $endif$$endif$
 \posttitle{\par\end{center}\vskip 0.5em}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\rhead{\theauthor}
-\lhead{\thetitle}
+\rhead{$author$}
+\lhead{$title$}
 
 \begin{document}
 $if(title)$
