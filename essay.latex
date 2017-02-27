@@ -251,11 +251,10 @@ $else$$if(titlepages)$
 $endif$$endif$
 
 
+
 \begin{document}
 $if(title)$
 \maketitle
-\thispagestyle{empty}
-\newpage
 $else$$if(titlepage)$
 \maketitle
 $else$$if(titlepages)$
@@ -273,9 +272,7 @@ $include-before$
 
 $endfor$
 
-\providecommand{\tocend}{}
-$if(notoc)$
-$else$
+$if(toc)$
 {
 $if(colorlinks)$
 \hypersetup{linkcolor=$if(toccolor)$$toccolor$$else$black$endif$}
@@ -283,22 +280,17 @@ $endif$
 \setcounter{tocdepth}{$if(toc-depth)$$toc-depth$$else$5$endif$}
 \tableofcontents
 }
-\renewcommand{\tocend}{\newpage}
 $endif$
 $if(lot)$
 \listoftables
-\renewcommand{\tocend}{\newpage}
 $endif$
 $if(lof)$
 \listoffigures
-\renewcommand{\tocend}{\newpage}
 $endif$
-\tocend
 
 $body$
 
 $if(nobiblatex)$$else$$if(bibliography)$
-\newpage
 $if(biblio-title)$\renewcommand{\bibname}{$biblio-title$}$endif$
 \section{\bibname}
 $if(splitbib)$
@@ -313,7 +305,6 @@ $else$
 $endif$$endif$$endif$
 
 $if(append)$
-\newpage
 $if(appendix-title)$\renewcommand{\appendixname}{$appendix-title$}$endif$
 \section{\appendixname}
 \begin{itemize}
