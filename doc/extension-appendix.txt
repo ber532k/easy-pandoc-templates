@@ -28,4 +28,6 @@ append.pages
 : Only use the following pages  from the given pdf.
   e.g. "1", "1-4", "1,2,6,7", "5-last", "4-1"
 
-
+append.landscape
+: Value: True or none [True| ]. Appended page is in landscape orientation.
+  Include that way and do not resize to fit portrait.

@@ -346,6 +346,7 @@ $endif$
 $if(append.file)$
 \includepdf[%
 	$if(append.pages)$pages={$append.pages$}$else$pages=-$endif$%
+	$if(append.landscape)$,landscape=true$endif$%
 	]{$append.file$}
 $else$
 \texttt{Missing file for appendix $append.title$}
