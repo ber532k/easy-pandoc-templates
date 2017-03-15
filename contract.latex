@@ -1,4 +1,7 @@
-\documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$babel-lang$,$endif$$if(papersize)$$papersize$paper,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
+\documentclass[$if(fontsize)$$fontsize$,$else$12pt,$endif$$if(lang)$$babel-lang$,$endif$$if(papersize)$$papersize$paper,$else$a4paper,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
+\usepackage{lastpage}
+\usepackage{ifthen}
+\usepackage{csquotes}
 $if(beamerarticle)$
 \usepackage{beamerarticle} % needs to be loaded first
 $endif$
@@ -37,9 +40,9 @@ $endfor$
 $if(euro)$
   \newcommand{\euro}{€}
 $endif$
-$if(mainfont)$
-    \setmainfont[$for(mainfontoptions)$$mainfontoptions$$sep$,$endfor$]{$mainfont$}
-$endif$
+\setmainfont[$for(mainfontoptions)$$mainfontoptions$$sep$,$endfor$]{%
+	$if(mainfont)$$mainfont$$else$Liberation Sans$endif$%
+	}
 $if(sansfont)$
     \setsansfont[$for(sansfontoptions)$$sansfontoptions$$sep$,$endfor$]{$sansfont$}
 $endif$
@@ -116,16 +119,6 @@ $for(polyglossia-otherlangs)$
   \setotherlanguage[$polyglossia-otherlangs.options$]{$polyglossia-otherlangs.name$}
 $endfor$
 \fi
-$endif$
-$if(natbib)$
-\usepackage{natbib}
-\bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
-$endif$
-$if(biblatex)$
-\usepackage[$if(biblio-style)$style=$biblio-style$,$endif$$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$]{biblatex}
-$for(bibliography)$
-\addbibresource{$bibliography$}
-$endfor$
 $endif$
 $if(listings)$
 \usepackage{listings}
@@ -217,26 +210,27 @@ $for(header-includes)$
 $header-includes$
 $endfor$
 
-$if(title)$
-\title{$title$$if(thanks)$\thanks{$thanks$}$endif$}
-$endif$
-$if(subtitle)$
-\providecommand{\subtitle}[1]{}
-\subtitle{$subtitle$}
-$endif$
 $if(author)$
 \author{$for(author)$$author$$sep$ \and $endfor$}
-$endif$
-$if(institute)$
-\providecommand{\institute}[1]{}
-\institute{$for(institute)$$institute$$sep$ \and $endfor$}
 $endif$
 \date{$date$}
 
 \begin{document}
+
+% Page Numbering:
+\pagenumbering{arabic}	% Crucial: Else \pageref{LastPage}
+			%	produces an error
+\ifthenelse{\pageref{LastPage}=1}
+	{\thispagestyle{empty}}    % SINGLE-PAGE: No numbering
+	{\thispagestyle{plain}}    % MULTI-PAGE:  Arabic numbering
+
 $if(title)$
-\maketitle
+\begin{center}
+	\textbf{\LARGE $title$}
+	\vskip 5ex
+\end{center}
 $endif$
+
 $if(abstract)$
 \begin{abstract}
 $abstract$
@@ -264,23 +258,67 @@ $if(lof)$
 $endif$
 $body$
 
-$if(natbib)$
-$if(bibliography)$
-$if(biblio-title)$
-$if(book-class)$
-\renewcommand\bibname{$biblio-title$}
-$else$
-\renewcommand\refname{$biblio-title$}
-$endif$
-$endif$
-\bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
+$if(sign)$
+\vskip 3cm plus 1cm minus 1cm
+\vfill
+\filbreak
 
-$endif$
-$endif$
-$if(biblatex)$
-\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
+$if(location)$$location$, $endif$
+$if(date)$$date$$endif$
 
+% Some commands for the loop:
+\providecommand{\n}{\newline}
+\providecommand{\SigOne}{0}
+\providecommand{\SigTwo}{0}
+\providecommand{\OddSig}{1}
+\providecommand{\TrailingSig}{0}
+\providecommand{\AbsFirst}{1}
+
+$for(sign)$
+% set up the basics - signature-one or two
+\ifthenelse{\OddSig = 1}
+    % If Signature is to be on the left
+    {
+        \renewcommand{\SigOne}{$sign$}
+        \renewcommand{\OddSig}{0}
+        \renewcommand{\TrailingSig}{1}
+    }
+    % If Signature is to be on the right
+    {
+        \renewcommand{\SigTwo}{$sign$}
+
+% Allow Break here, if not the absolute first
+\ifthenelse{\AbsFirst = 0}
+    {\filbreak}
+    {\renewcommand{\AbsFirst}{0}}
+
+% Print this every second run
+\vskip 3cm plus 0.5cm minus 1cm
+\begin{tabular}[h]{ll}
+    \rule{0.4\textwidth}{0.4pt} \rule{0.14\textwidth}{0pt} &
+    \rule{0.4\textwidth}{0.4pt} \\
+    \parbox[t]{0.4\textwidth}{\SigOne} &
+    \parbox[t]{0.4\textwidth}{\SigTwo} \\
+\end{tabular}
+
+% Reset everything for next run (if any)
+\renewcommand{\SigOne}{0}
+\renewcommand{\SigTwo}{0}
+\renewcommand{\OddSig}{1}
+\renewcommand{\TrailingSig}{0}
+}
+$endfor$
+
+% Catch trailing single signature
+\ifthenelse{\TrailingSig = 1}{
+    \vskip 2cm
+    \begin{tabular}[h]{ll}
+        \rule{0.4\textwidth}{0.4pt} & \\
+        \parbox[t]{0.4\textwidth}{\SigOne} & \\
+    \end{tabular}
+}
 $endif$
+
 $for(include-after)$
 $include-after$
 
