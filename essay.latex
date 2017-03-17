@@ -1,4 +1,6 @@
 \documentclass[$if(fontsize)$$fontsize$$else$11pt,$endif$$if(lang)$$babel-lang$,$endif$$if(papersize)$$papersize$paper$else$a4paper,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{article}
+\usepackage{lastpage}
+\usepackage{ifthen}
 $if(fontfamily)$
 \usepackage[$for(fontfamilyoptions)$$fontfamilyoptions$$sep$,$endfor$]{$fontfamily$}
 $else$
@@ -274,6 +276,7 @@ $endif$$endif$
 \lhead{$title$}
 
 \begin{document}
+
 $if(title)$
 \maketitle
 $else$$if(titlepage)$
@@ -281,6 +284,13 @@ $else$$if(titlepage)$
 $else$$if(titlepages)$
 \maketitle
 $endif$$endif$$endif$
+
+% Page Numbering:
+\pagenumbering{arabic}	% Crucial: Else \pageref{LastPage}
+			%	produces an error
+\ifthenelse{\pageref{LastPage}=1}
+	{\thispagestyle{empty}}    % SINGLE-PAGE: No numbering
+	{\thispagestyle{plain}}    % MULTI-PAGE:  Arabic numbering
 
 $if(abstract)$
 \begin{abstract}

@@ -16,7 +16,11 @@
 % Include after \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% This should be right at the beginning
+% This should be right at the beginning.
+% If \maketitle is used, this must be
+% after the \maketitle command, else
+% \maketitle will reset pagenumbering
+% to something else.
 
 
 % Page Numbering:
