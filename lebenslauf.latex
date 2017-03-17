@@ -14,10 +14,14 @@ $if(fontfamily)$
 $else$
 \usepackage{lmodern}
 $endif$
-$if(linestretch)$
 \usepackage{setspace}
-\setstretch{$linestretch$}
-$endif$
+\setstretch{
+	$if(linestretch)$
+	$linestretch$
+	$else$
+	1.2
+	$endif$
+}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
@@ -299,10 +303,10 @@ $endif$
 % Title
 $if(title)$
 {\huge $title$}
-\vskip 5ex plus 2ex minus 2ex
+\vskip 3ex plus 1ex minus 2ex
 $else$$if(author)$
 {\huge $author$}
-\vskip 5ex plus 2ex minus 2ex
+\vskip 3ex plus 1ex minus 2ex
 $endif$$endif$
 
 $for(include-before)$
