@@ -273,6 +273,7 @@ $endif$
 	leftmargin=3.15cm,
 	labelsep=1em,
 	style=multiline,
+	midpenalty=-500,
 }
 
 $for(header-includes)$
