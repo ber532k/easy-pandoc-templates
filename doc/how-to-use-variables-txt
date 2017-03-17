@@ -1,9 +1,3 @@
----
-title: Reference guide for header variables to use with easy-pandoc-templates
-author: <ber532k@gmx.de>
-...
-
-
 # How to use variables
 
 Variables may be specified inside a YAML-style header in order to customize the output pandoc

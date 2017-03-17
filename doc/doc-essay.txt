@@ -1,0 +1,10 @@
+# Purpose
+
+This template is designed for short papers. Other than that it's quite
+similar to the hausarbeit template.
+
+# Available Extensions
+
+- Titlepage
+- Splitbib
+- Appendix

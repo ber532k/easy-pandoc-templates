@@ -1,0 +1,29 @@
+# Purpose
+
+This is a template to produce a CV.
+
+# Usage
+
+Labeled lists
+
+## Custom variables
+
+photo
+: Insert image at top-right corner of CV.
+
+color
+: Use a custom colour for the colored parts.
+  ``color: black`` (obviously) turns of coloring.
+  See <https://en.wikibooks.org/wiki/LaTeX/Colors>
+  for further information on available colours.
+  (The template uses the ``xcolor`` package for
+  in order to make a maximum number of colours
+  available.)
+
+If Author or title are provided, they are used as document
+title. Leave both empty in order to skip the title.
+
+
+# Available Extensions
+
+None yet.
