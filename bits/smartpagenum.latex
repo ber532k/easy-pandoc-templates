@@ -26,9 +26,3 @@
 	{\thispagestyle{empty}}    % SINGLE-PAGE: No numbering
 	{\thispagestyle{plain}}    % MULTI-PAGE:  Arabic numbering
 
-$if(title)$
-\begin{center}
-	\textbf{\LARGE $title$}
-	\vskip 5ex
-\end{center}
-$endif$
