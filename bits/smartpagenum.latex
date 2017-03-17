@@ -1,0 +1,34 @@
+% This bit of code will autodetect whether
+% the output will be a single- or multi-page
+% file and will remove the page number
+% in case it is a single-page document
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Include in header
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{lastpage}
+\usepackage{ifthen}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Include after \begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This should be right at the beginning
+
+
+% Page Numbering:
+\pagenumbering{arabic}	% Crucial: Else \pageref{LastPage}
+			%	produces an error
+\ifthenelse{\pageref{LastPage}=1}
+	{\thispagestyle{empty}}    % SINGLE-PAGE: No numbering
+	{\thispagestyle{plain}}    % MULTI-PAGE:  Arabic numbering
+
+$if(title)$
+\begin{center}
+	\textbf{\LARGE $title$}
+	\vskip 5ex
+\end{center}
+$endif$
