@@ -95,9 +95,7 @@ $endif$
 \hypersetup{
 $if(title)$
             pdftitle={$title$},
-$else$$if(author)$
-            pdftitle={$author$},
-$endif$$endif$
+$endif$
 $if(author)$
             pdfauthor={$author$},
 $endif$
@@ -324,6 +322,12 @@ $if(lof)$
 \listoffigures
 $endif$
 $body$
+
+$if(sign-at)$
+\vskip 10cm plus 20cm minus 8cm
+$sign-at$
+\vskip 30cm plus 20cm minus 30cm
+$endif$
 
 $for(include-after)$
 $include-after$

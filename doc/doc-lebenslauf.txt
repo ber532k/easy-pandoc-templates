@@ -4,7 +4,24 @@ This is a template to produce a CV.
 
 # Usage
 
-Labeled lists
+Definition-lists are the main means of getting the information
+into an ordered form:
+
+```
+Name
+: Max Mustermann
+
+Date of Birth
+: Once upon a time
+
+E-Mail
+: max@muster.mann
+```
+
+Numbered and unnumbered lists as well as usual text are also supported.
+Headers of level one through three are supported. Headers of level four
+and five will be treated as level-three headers.
+
 
 ## Custom variables
 
@@ -20,10 +37,12 @@ color
   in order to make a maximum number of colours
   available.)
 
-If Author or title are provided, they are used as document
-title. Leave both empty in order to skip the title.
+author, title
+: If Author or title are provided, they are used as document
+  title and will also feature in pdf-metadata. Leave both empty
+  in order to skip the title.
 
 
 # Available Extensions
 
-None yet.
+- Signature (only sign-at)
