@@ -263,8 +263,7 @@ $if(sign)$
 \vfill
 \filbreak
 
-$if(location)$$location$, $endif$
-$if(date)$$date$$endif$
+$if(sign-at)$$sign-at$$endif$
 
 % Some commands for the loop:
 \providecommand{\n}{\newline}
