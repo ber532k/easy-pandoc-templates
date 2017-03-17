@@ -251,16 +251,10 @@ $endif$
 	{\thesubsubsection}{}{}
 \titlespacing{\subsubsection}
 	{0pt}{0pt}{0pt}
-\titleformat{\paragraph}
-	{{\penalty-2000} \bfseries \color{\mycolor}}
-	{\thesubsubsection}{}{}
-\titlespacing{\paragraph}
-	{0pt}{0pt}{0pt}
-\titleformat{\subparagraph}
-	{{\penalty-1000} \bfseries \color{\mycolor}}
-	{\thesubsubsection}{}{}
-\titlespacing{\subparagraph}
-	{0pt}{0pt}{0pt}
+
+% Remove paragraph and subparagraph
+\renewcommand{\paragraph}{\subsubsection}
+\renewcommand{\subparagraph}{\subsubsection}
 
 
 % Definition-List Style
