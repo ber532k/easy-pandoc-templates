@@ -1,0 +1,99 @@
+% This bit of code will include any number
+% of empty fields for signatures, showning
+% a line to sign on and some information
+% about the person signing below.
+%
+% It processes data from a pandoc variable
+% called sign, specified as follows:
+%
+%	---
+%	sign:
+%	  - Max Mustermann \n
+%	    Some Street \n Some Town \n
+%	  - Martina Musterfrau
+%	...
+%
+%
+% For Multi-line info the latex-command
+% \newline can be used.
+% This can be abbreviated as \n
+%
+% Signature-fields will be placed in two
+% rows and will handle pagebreaks in an
+% automated smart way.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Include in header
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{ifthen}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Include after $body$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+$if(sign)$
+\vskip 3cm plus 1cm minus 1cm
+\vfill
+\filbreak
+
+$if(location)$$location$, $endif$
+$if(date)$$date$$endif$
+
+% Some commands for the loop:
+\providecommand{\n}{\newline}
+\providecommand{\SigOne}{0}
+\providecommand{\SigTwo}{0}
+\providecommand{\OddSig}{1}
+\providecommand{\TrailingSig}{0}
+\providecommand{\AbsFirst}{1}
+
+$for(sign)$
+% set up the basics - signature-one or two
+\ifthenelse{\OddSig = 1}
+    % If Signature is to be on the left
+    {
+        \renewcommand{\SigOne}{$sign$}
+        \renewcommand{\OddSig}{0}
+        \renewcommand{\TrailingSig}{1}
+    }
+    % If Signature is to be on the right
+    {
+        \renewcommand{\SigTwo}{$sign$}
+
+% Allow Break here, if not the absolute first
+\ifthenelse{\AbsFirst = 0}
+    {\filbreak}
+    {\renewcommand{\AbsFirst}{0}}
+
+% Print this every second run
+\vskip 3cm plus 0.5cm minus 1cm
+\begin{tabular}[h]{ll}
+    \rule{0.4\textwidth}{0.4pt} \rule{0.14\textwidth}{0pt} &
+    \rule{0.4\textwidth}{0.4pt} \\
+    \parbox[t]{0.4\textwidth}{\SigOne} &
+    \parbox[t]{0.4\textwidth}{\SigTwo} \\
+\end{tabular}
+
+% Reset everything for next run (if any)
+\renewcommand{\SigOne}{0}
+\renewcommand{\SigTwo}{0}
+\renewcommand{\OddSig}{1}
+\renewcommand{\TrailingSig}{0}
+}
+$endfor$
+
+% Catch trailing single signature
+\ifthenelse{\TrailingSig = 1}{
+    \vskip 2cm
+    \begin{tabular}[h]{ll}
+        \rule{0.4\textwidth}{0.4pt} & \\
+        \parbox[t]{0.4\textwidth}{\SigOne} & \\
+    \end{tabular}
+}
+$endif$
+
