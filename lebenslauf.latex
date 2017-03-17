@@ -275,16 +275,8 @@ $for(header-includes)$
 $header-includes$
 $endfor$
 
-\providecommand{\printtitle}{0}
-$if(title)$
-\title{$title$}
-\renewcommand{\printtitle}{1}
-$else$$if(author)$
-\title{$author$}
-$endif$$endif$
 $if(author)$
 \author{$for(author)$$author$$sep$ \and $endfor$}
-\renewcommand{\printtitle}{1}
 $endif$
 \date{$date$}
 
@@ -305,13 +297,13 @@ $if(photo)$
 $endif$
 
 % Title
-\ifthenelse{\printtitle = 1}{
-\makeatletter {
-	\huge
-	\@title
-} \makeatother
+$if(title)$
+{\huge $title$}
 \vskip 5ex plus 2ex minus 2ex
-}
+$else$$if(author)$
+{\huge $author$}
+\vskip 5ex plus 2ex minus 2ex
+$endif$$endif$
 
 $for(include-before)$
 $include-before$
