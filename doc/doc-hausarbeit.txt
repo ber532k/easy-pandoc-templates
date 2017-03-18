@@ -1,8 +1,10 @@
-# Purpose
+# hausarbeit.latex
+
+## Purpose
 
 This template is designed for student's papers.
 
-# Available Extensions
+## Available Extensions
 
 - Titlepage
 - Splitbib

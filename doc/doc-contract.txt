@@ -1,8 +1,10 @@
-# Purpose
+# contract.latex
+
+## Purpose
 
 This is a template for legal contracts and other sorts of formal
 documents and declarations.
 
-# Available Extensions
+## Available Extensions
 
-- Signature
+- Signature (multiple)

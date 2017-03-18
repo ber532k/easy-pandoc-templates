@@ -1,8 +1,10 @@
-# Purpose
+# lebenslauf.latex
+
+## Purpose
 
 This is a template to produce a CV.
 
-# Usage
+## Usage
 
 Definition-lists are the main means of getting the information
 into an ordered form:
@@ -23,7 +25,7 @@ Headers of level one through three are supported. Headers of level four
 and five will be treated as level-three headers.
 
 
-## Custom variables
+### Custom variables
 
 photo
 : Insert image at top-right corner of CV.
@@ -43,6 +45,6 @@ author, title
   in order to skip the title.
 
 
-# Available Extensions
+## Available Extensions
 
 - Signature (only sign-at)

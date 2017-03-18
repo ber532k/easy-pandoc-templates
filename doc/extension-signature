@@ -1,0 +1,13 @@
+# Extension: Signature (single|multiple)
+
+sign-at
+: Provide data to be printed directly above signature fields.
+  E. g. "New York, 10^th^ Sep. 2016"
+
+sign
+: Provide data about the Person signing. Assigning multiple values
+  may be supported, depending on the purpose of the template.
+  Also check if it refers to *Signature (single)* or
+  *Signature (multiple)*.
+: If you want to include lines, you can use the ``\newline`` command
+  from latex. This can usually be abbreviated as ``\n`` in these cases.

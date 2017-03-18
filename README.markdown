@@ -1,9 +1,3 @@
-# Note
-
-You will find this repository does actually just contain one single
-template for the moment. Anywhay, here's what it is supposed to do
-at some point:
-
 # About
 
 The templates contained in this repository aim at providing a variety
@@ -62,62 +56,11 @@ E.g. ``/usr/share/pandoc/data/templates``. Or run ``sudo make install``,
 which does exactly that.
 
 You can also just drop them in your working directory, especially if you
-just want to check what they do.
+just want to check out what they do.
 
 ## Using a template
 
 Run pandoc with ``-t latex`` or ``-t beamer`` and ``--template=`` options
-if you want to use these templates. ``--biblatex`` is required by most.
-
-# Templates
-
-## hausarbeit.latex
-
-Template for producing students' papers.
-
-Available Extensions:
-	- Titlepage
-	- Appendix
-	- Splitbib
+if you want to use these templates. ``--biblatex`` is required by some.
 
 
-
-
-
-
-# Licence (same as it's parent pandoc-templates)
-
-All of the templates in this repository are dual licensed, under both
-the GPL (v2 or higher, same as pandoc) and the BSD 3-clause license
-(included below).
-
-----
-
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-
-    * Neither the name of John MacFarlane nor the names of other
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

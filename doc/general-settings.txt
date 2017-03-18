@@ -6,7 +6,8 @@ papersize
 : e.g. a4, a5, letter
 
 margin-top, margin-left, margin-right, margin-bottom
-: set margin size, e.g. 1in, 2cm, 30pt
+: set margin size, e.g. 1in, 2cm, 30pt\
+\
 
 fontsize
 : set main font size, e.g. 10pt

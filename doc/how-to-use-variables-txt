@@ -1,7 +1,7 @@
 # How to use variables
 
 Variables may be specified inside a YAML-style header in order to customize the output pandoc
-generates via the easy.hausarbeit.latex template. Simple variables may be specified as follows:
+generates via some template. Simple variables may be specified as follows:
 
 ```
 ---
@@ -30,7 +30,7 @@ append:
   - title: The pandoc man pages as pdf
     file:  pandoc.pdf
   - title: Why to use markdown
-    file:  why_markdown.pdf
+    file:  why-markdown.pdf
 ...
 ```
 
