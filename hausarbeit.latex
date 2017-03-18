@@ -290,14 +290,17 @@ $endif$
 \setcounter{tocdepth}{$if(toc-depth)$$toc-depth$$else$5$endif$}
 \tableofcontents
 }
+\filbreak
 \renewcommand{\tocend}{\newpage}
 $endif$
 $if(lot)$
 \listoftables
+\filbreak
 \renewcommand{\tocend}{\newpage}
 $endif$
 $if(lof)$
 \listoffigures
+\filbreak
 \renewcommand{\tocend}{\newpage}
 $endif$
 \tocend
