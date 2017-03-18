@@ -64,3 +64,7 @@ Run pandoc with ``-t latex`` or ``-t beamer`` and ``--template=`` options
 if you want to use these templates. ``--biblatex`` is required by some.
 
 
+# Known Bugs
+
+lebenslauf.latex
+: Photo only works if title or author is set.
