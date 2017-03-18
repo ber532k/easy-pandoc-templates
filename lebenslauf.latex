@@ -235,13 +235,15 @@ $endif$
 	{\large \bfseries \color{\mycolor}}
 	{\thesection}{}
 		{{\penalty-8000} \rule[0.5ex]{2.7cm}{0.2ex} \hskip 0.3cm}
+		{{\penalty10000}}
 \titlespacing{\section}
 	{0pt}{2ex plus .5ex minus .2ex}{0ex plus .2ex}
 
 \titleformat{\subsection}
 	{\large \bfseries \color{\mycolor}}
 	{\thesubsection}{}
-		{{\penalty-5000}}
+		{{\penalty-3000}}
+		{{\penalty10000}}
 \titlespacing{\subsection}
 	{0pt}{0pt plus .1ex}{0pt}
 
@@ -249,7 +251,8 @@ $endif$
 \titleformat{\subsubsection}
 	{\bfseries \color{\mycolor}}
 	{\thesubsubsection}{}
-		{{\penalty-3000}}
+		{{\penalty-1000}}
+		{{\penalty10000}}
 \titlespacing{\subsubsection}
 	{0pt}{0pt}{0pt}
 
