@@ -2,4 +2,6 @@
 title: User's Guide to *Easy Pandoc Templates*
 author: ber532k@gmx.de
 color: green!75!black
+toc: true
+toc-depth: 2
 ...
