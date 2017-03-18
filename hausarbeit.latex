@@ -305,7 +305,7 @@ $endif$
 $body$
 
 $if(nobiblatex)$$else$$if(bibliography)$
-\newpage
+{\penalty-2000}
 $if(biblio-title)$\renewcommand{\bibname}{$biblio-title$}$endif$
 \section{\bibname}
 $if(splitbib)$
@@ -320,7 +320,7 @@ $else$
 $endif$$endif$$endif$
 
 $if(append)$
-\newpage
+{\penalty-1000}
 $if(appendix-title)$\renewcommand{\appendixname}{$appendix-title$}$endif$
 \section{\appendixname}
 \begin{itemize}

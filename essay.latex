@@ -323,6 +323,7 @@ $body$
 
 $if(nobiblatex)$$else$$if(bibliography)$
 $if(biblio-title)$\renewcommand{\bibname}{$biblio-title$}$endif$
+{\penalty-2000}
 \section{\bibname}
 $if(splitbib)$
 $for(splitbib)$
@@ -337,6 +338,7 @@ $endif$$endif$$endif$
 
 $if(append)$
 $if(appendix-title)$\renewcommand{\appendixname}{$appendix-title$}$endif$
+{\penalty-1000}
 \section{\appendixname}
 \begin{itemize}
 %\tightlist
