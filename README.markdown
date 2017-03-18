@@ -67,4 +67,6 @@ if you want to use these templates. ``--biblatex`` is required by some.
 # Known Bugs
 
 lebenslauf.latex
-: Photo only works if title or author is set.
+: Photo only works if either title or author is set.
+: Labels must not use more lines than content. One can use manual linebreaks
+  in content as a workaround.
