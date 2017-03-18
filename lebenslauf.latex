@@ -232,21 +232,24 @@ $endif$
 
 % Section Titles
 \titleformat{\section}
-	{{\penalty-8000} \large \bfseries \color{\mycolor}}
-	{\thesection}{}{\rule[0.5ex]{2.7cm}{0.2ex} \hskip 0.3cm}
+	{\large \bfseries \color{\mycolor}}
+	{\thesection}{}
+		{{\penalty-8000} \rule[0.5ex]{2.7cm}{0.2ex} \hskip 0.3cm}
 \titlespacing{\section}
 	{0pt}{2ex plus .5ex minus .2ex}{0ex plus .2ex}
 
 \titleformat{\subsection}
-	{{\penalty-5000} \large \bfseries \color{\mycolor}}
-	{\thesubsection}{}{}
+	{\large \bfseries \color{\mycolor}}
+	{\thesubsection}{}
+		{{\penalty-5000}}
 \titlespacing{\subsection}
 	{0pt}{0pt plus .1ex}{0pt}
 
 % All the same from here on
 \titleformat{\subsubsection}
-	{{\penalty-3000} \bfseries \color{\mycolor}}
-	{\thesubsubsection}{}{}
+	{\bfseries \color{\mycolor}}
+	{\thesubsubsection}{}
+		{{\penalty-3000}}
 \titlespacing{\subsubsection}
 	{0pt}{0pt}{0pt}
 
