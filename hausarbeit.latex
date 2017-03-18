@@ -133,7 +133,14 @@ $endfor$
 $endif$
 $if(nobiblatex)$
 $else$
-\usepackage[$if(biblio-style)$style=$biblio-style$,$endif$$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$]{$if(biblatex-version)$$biblatex-version$$else$biblatex$endif$}
+\usepackage[%
+	$if(biblatexoptions)$
+		$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$    %
+	$else$
+		backend=biber,style=verbose-ibid,isbn=false,doi=false    %
+	$endif$
+	$if(biblio-style)$style=$biblio-style$,$endif$    %
+	]{$if(biblatex-version)$$biblatex-version$$else$biblatex$endif$}
 $for(bibliography)$
 \addbibresource{$bibliography$}
 $endfor$
