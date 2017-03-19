@@ -234,7 +234,7 @@ $if(myrefname)$\setkomavar*{myref}{$myrefname$}$endif$
 $if(place)$\setkomavar{place}{$place$}$endif$
 $if(PPdatamatrix)$\setkomavar{PPdatamatrix}{$PPdatamatrix$}$endif$
 $if(PPcode)$\setkomavar{PPcode}{$PPcode$}$endif$
-$if(signature)$\setkomavar{signature}{$signature$}$endif$
+\setkomavar{signature}{$signature$}
 $if(specialmail)$\setkomavar{specialmail}{$specialmail$}$endif$
 $if(subject)$\setkomavar{subject}{$subject$}$endif$
 $if(title)$\setkomavar{title}{$title$}$endif$
