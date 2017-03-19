@@ -336,7 +336,7 @@ $if(place)$\renewcommand{\dosign}{1}$endif$
 $if(date)$\renewcommand{\dosign}{1}$endif$
 
 \ifthenelse{\dosign = 1}{%
-\vskip 10cm plus 20cm minus 8cm
+\vskip 20cm plus 20cm minus 18cm
 
     $if(place)$
         $place$,
@@ -344,7 +344,7 @@ $if(date)$\renewcommand{\dosign}{1}$endif$
     $endif$
 	$if(date)$$date$$else$\today$endif$
 
-\vskip 30cm plus 20cm minus 30cm
+\vskip 20cm plus 30cm minus 20cm
 }
 
 $for(include-after)$
