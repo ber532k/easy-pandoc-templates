@@ -329,11 +329,23 @@ $if(lof)$
 $endif$
 $body$
 
-$if(sign-at)$
+% Check if signature is to be used
+\providecommand{\dosign}{0}
+$if(sign)$\renewcommand{\dosign}{1}$endif$
+$if(place)$\renewcommand{\dosign}{1}$endif$
+$if(date)$\renewcommand{\dosign}{1}$endif$
+
+\ifthenelse{\dosign = 1}{%
 \vskip 10cm plus 20cm minus 8cm
-$sign-at$
+
+    $if(place)$
+        $place$,
+		\iflanguage{ngerman}{ den }{ }
+    $endif$
+	$if(date)$$date$$else$\today$endif$
+
 \vskip 30cm plus 20cm minus 30cm
-$endif$
+}
 
 $for(include-after)$
 $include-after$

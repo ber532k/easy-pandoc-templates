@@ -8,6 +8,7 @@ pdf:
 	../README.markdown \
 	doc-hausarbeit.txt \
 	doc-essay.txt \
+	doc-letter.txt \
 	doc-contract.txt \
 	doc-lebenslauf.txt \
 	how-to-use-variables-txt \

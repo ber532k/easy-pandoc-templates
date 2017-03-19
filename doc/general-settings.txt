@@ -29,8 +29,13 @@ They might still not show up in the actual pdf, especially if titlepage(s) is us
 - institute
 - title
 - subtitle
-- date
 
+place
+: Where was the document produced. This is mostly used with signed documents.
+
+date
+: When was the document produced or signed. If *lang* is set correctly
+  you can try out ``\today`` if you're lazy (or just forgot the date).
 
 ## Document Structure
 

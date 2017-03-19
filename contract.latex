@@ -263,7 +263,12 @@ $if(sign)$
 \vfill
 \filbreak
 
-$if(sign-at)$$sign-at$$endif$
+% Formerly sign-at:
+$if(place)$
+    $place$,
+            \iflanguage{ngerman}{ den }{ }
+$endif$
+    $if(date)$$date$$else$\today$endif$
 
 % Some commands for the loop:
 \providecommand{\n}{\newline}
