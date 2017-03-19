@@ -1,0 +1,20 @@
+# letter2.latex
+
+## Purpose:
+
+This is a template for formal letters based on scrlttr2.
+
+## Available Extensions
+
+- letter
+
+## Custom options
+
+Since this template is based on scrlttr2, you can also use
+scrlttr2's KOMA-Variables, which are made available as
+Pandoc-Variables with the same name. Anyhow, if you decide to
+use *from* and *from2* fields, most of these variables will be
+ignored.
+
+The small return address above the recipient's info can be overridden
+by setting *backaddress* directly.

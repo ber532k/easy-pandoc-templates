@@ -1,0 +1,20 @@
+# Extension: letter
+
+from
+: Sender's name and postal address
+
+from2
+: Additional contact information, e. g. sender's
+  email or phone number.
+
+to
+: Recipients name and postal address
+
+subject
+: Self-explaining
+
+opening
+: A phrase addressing the reader; e. g. "Dear Sir or Madam"
+
+closing
+: E. g. *Sincerely*, *Yours*
