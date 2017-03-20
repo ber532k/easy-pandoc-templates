@@ -287,7 +287,9 @@ $if(backaddress)$\setkomavar{backaddress}{$backaddress$}\KOMAoptions{backaddress
 \begin{document}
 
 % Set german label to Betreff instead of Betrifft
+$if(subject)$
 \iflanguage{ngerman}{\renewcaptionname{ngerman}{\subjectname}{Betreff}}
+$endif$
 
 \begin{letter}{%
 $to$%
@@ -304,9 +306,46 @@ $body$
 
 \closing{\usekomavar{closing}}
 
-$if(ps)$\ps{$ps$}$endif$
+$if(signature)$$else$
+\vskip 2cm
+$endif$
+\vfill
+\filbreak
 
-$if(encl)$\encl{$encl$}$endif$
+$if(ps)$\ps{$ps$}$endif$
+\filbreak
+
+$if(encl)$
+% Check how many enclosures there are
+\providecommand{\firstencl}{1}
+\providecommand{\singleencl}{1}
+$for(encl)$
+    \ifthenelse{\firstencl = 1}
+	{\renewcommand{\firstencl}{0}}
+	{\renewcommand{\singleencl}{0}}
+$endfor$
+
+% Print enclosure(s)
+\ifthenelse{\singleencl = 1}
+	% Single enclosure
+	{\encl{$encl$}}
+	% Multiple enclosures
+	{
+	\iflanguage{ngerman}{\renewcaptionname{ngerman}{\enclname}{Anlagen}
+		% Quick and dirty fix (no idea what's the problem here)
+		\enclname:
+		}
+	\encl{
+	\begin{itemize}
+	\tightlist
+	    $for(encl)$
+	    \item $encl$
+	    $endfor$
+	\end{itemize}
+	}
+    }
+$endif$
+\filbreak
 
 $if(biblatex)$
 \printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
