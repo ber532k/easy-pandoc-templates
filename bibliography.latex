@@ -1,4 +1,6 @@
 \documentclass[$if(fontsize)$$fontsize$$else$12pt,$endif$$if(lang)$$babel-lang$,$endif$$if(papersize)$$papersize$paper$else$a4paper,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{article}
+\usepackage{lastpage}
+\usepackage{ifthen}
 $if(fontfamily)$
 \usepackage[$for(fontfamilyoptions)$$fontfamilyoptions$$sep$,$endfor$]{$fontfamily$}
 $else$
@@ -191,7 +193,7 @@ $endif$
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$5$endif$}
+\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$0$endif$}
 $if(subparagraph)$
 $else$
 % Redefines (sub)paragraphs to behave more like sections
@@ -247,27 +249,23 @@ $if(institute)$
 $endif$
 \date{$date$}
 
-$if(titlepage)$
-\renewcommand{\maketitle}{%
-	\includepdf[pages=1]{$titlepage$}
-}
-$else$$if(titlepages)$
-\renewcommand{\maketitle}{%
-	\includepdf[pages=-]{$titlepages$}
-}
-$endif$$endif$
-
 
 \begin{document}
 $if(title)$
-\maketitle
-\thispagestyle{empty}
-\newpage
-$else$$if(titlepage)$
-\maketitle
-$else$$if(titlepages)$
-\maketitle
-$endif$$endif$$endif$
+%\maketitle
+\begin{center}
+	{\LARGE \bfseries $title$}
+\end{center}
+\vskip 10ex
+$endif$
+
+% Page Numbering:
+\pagenumbering{arabic}  % Crucial: Else \pageref{LastPage}
+                        %       produces an error
+\ifthenelse{\pageref{LastPage}=1}
+        {\thispagestyle{empty}}    % SINGLE-PAGE: No numbering
+        {\thispagestyle{plain}}    % MULTI-PAGE:  Arabic numbering
+
 
 $if(abstract)$
 \begin{abstract}
@@ -280,9 +278,7 @@ $include-before$
 
 $endfor$
 
-\providecommand{\tocend}{}
-$if(notoc)$
-$else$
+$if(toc)$
 {
 $if(colorlinks)$
 \hypersetup{linkcolor=$if(toccolor)$$toccolor$$else$black$endif$}
@@ -290,27 +286,17 @@ $endif$
 \setcounter{tocdepth}{$if(toc-depth)$$toc-depth$$else$5$endif$}
 \tableofcontents
 }
-\filbreak
-\renewcommand{\tocend}{\newpage}
 $endif$
 $if(lot)$
 \listoftables
-\filbreak
-\renewcommand{\tocend}{\newpage}
 $endif$
 $if(lof)$
 \listoffigures
-\filbreak
-\renewcommand{\tocend}{\newpage}
 $endif$
-\tocend
 
 $body$
 
 $if(nobiblatex)$$else$$if(bibliography)$
-{\penalty-2000}
-$if(biblio-title)$\renewcommand{\bibname}{$biblio-title$}$endif$
-\section{\bibname}
 $if(splitbib)$
 $for(splitbib)$
 \subsection{$splitbib.title$}
