@@ -242,8 +242,8 @@ $endif$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Some custom tweaks
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{etoolbox,perpage}
 % Per-Page footnotes
+\usepackage{perpage}
 \MakePerPage{footnote}
 % emph to textbf in quote
 \AtBeginEnvironment{quote}{\renewcommand\emph{\textbf}}
