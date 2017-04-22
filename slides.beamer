@@ -313,18 +313,21 @@ $endif$
 	\setbeamertemplate{headline}{}
 	\setlength{\headsep}{0cm}
 	\oldsection{#1}
+	\frametitle{#1}
     }}
 \let\oldsubsection\subsection
 \renewcommand{\subsection}[1]{{
 	\setbeamertemplate{headline}{}
 	\setlength{\headsep}{0cm}
 	\oldsubsection{#1}
+	\frametitle{#1}
     }}
 \let\oldsubsubsection\subsubsection
 \renewcommand{\subsubsection}[1]{{
 	\setbeamertemplate{headline}{}
 	\setlength{\headsep}{0cm}
 	\oldsubsubsection{#1}
+	\frametitle{#1}
     }}
 
 
