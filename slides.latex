@@ -242,14 +242,14 @@ $endif$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Some custom tweaks
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{etoolbox,perpage}
 % Per-Page footnotes
-\usepackage{perpage}
 \MakePerPage{footnote}
 % emph to textbf in quote
-\let\oldquote\quote
-\def\quote{\oldquote \renewcommand\emph{\textbf}}
+\AtBeginEnvironment{quote}{\renewcommand\emph{\textbf}}
 % Disable continuation count of frame titles
 \setbeamertemplate{frametitle continuation}{}
+
 
 \begin{document}
 $if(title)$
