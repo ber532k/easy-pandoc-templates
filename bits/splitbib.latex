@@ -1,0 +1,14 @@
+$if(nobiblatex)$$else$$if(bibliography)$
+{\penalty-2000}
+$if(biblio-title)$\renewcommand{\bibname}{$biblio-title$}$endif$
+\section{\bibname}
+$if(splitbib)$
+$for(splitbib)$
+\subsection{$splitbib.title$}
+\printbibliography[heading=none,$splitbib.rule$]
+
+$endfor$
+$else$
+\printbibliography[heading=none]
+
+$endif$$endif$$endif$

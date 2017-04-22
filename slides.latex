@@ -1,4 +1,4 @@
-\documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$babel-lang$,$endif$$if(handout)$handout,$endif$$if(colorlinks)$dvipsnames,$endif$$if(beamer)$ignorenonframetext,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
+\documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$babel-lang$,$endif$$if(handout)$handout,$endif$$if(colorlinks)$dvipsnames,$endif$$if(beamer)$ignorenonframetext,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{beamer}
 \setbeamertemplate{caption}[numbered]
 \setbeamertemplate{caption label separator}{: }
 \setbeamercolor{caption name}{fg=normal text.fg}
@@ -87,11 +87,7 @@ $endfor$
 \fi
 $endif$
 \newif\ifbibliography
-$if(natbib)$
-\usepackage{natbib}
-\bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
-$endif$
-$if(biblatex)$
+$if(nobiblatex)$$else$
 \usepackage[$if(biblio-style)$style=$biblio-style$,$endif$$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$]{biblatex}
 $for(bibliography)$
 \addbibresource{$bibliography$}
@@ -254,29 +250,23 @@ $if(toc)$
 $endif$
 $body$
 
-$if(natbib)$
-$if(bibliography)$
-$if(biblio-title)$
-$if(book-class)$
-\renewcommand\bibname{$biblio-title$}
+$if(nobiblatex)$$else$$if(bibliography)$
+\bibliographytrue
+$if(biblio-title)$\renewcommand{\bibname}{$biblio-title$}$endif$
+\begin{frame}[allowframebreaks]{\bibname}
+
+$if(splitbib)$
+$for(splitbib)$
+\section{$splitbib.title$}
+\printbibliography[heading=none,$splitbib.rule$]
+
+$endfor$
 $else$
-\renewcommand\refname{$biblio-title$}
-$endif$
-$endif$
-\begin{frame}[allowframebreaks]{$biblio-title$}
-\bibliographytrue
-\bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
-\end{frame}
-
-$endif$
-$endif$
-$if(biblatex)$
-\begin{frame}[allowframebreaks]{$biblio-title$}
-\bibliographytrue
 \printbibliography[heading=none]
-\end{frame}
 
-$endif$
+\end{frame}
+$endif$$endif$$endif$
+
 $for(include-after)$
 $include-after$
 
