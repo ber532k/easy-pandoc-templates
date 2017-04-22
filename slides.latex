@@ -1,4 +1,5 @@
-\documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$babel-lang$,$endif$$if(handout)$handout,$endif$$if(colorlinks)$dvipsnames,$endif$$if(beamer)$ignorenonframetext,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{beamer}
+\documentclass{beamer}
+%\documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$babel-lang$,$endif$$if(handout)$handout,$endif$$if(colorlinks)$dvipsnames,$endif$$if(beamer)$ignorenonframetext,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
 \setbeamertemplate{caption}[numbered]
 \setbeamertemplate{caption label separator}{: }
 \setbeamercolor{caption name}{fg=normal text.fg}
@@ -87,12 +88,17 @@ $endfor$
 \fi
 $endif$
 \newif\ifbibliography
-$if(nobiblatex)$$else$
-\usepackage[$if(biblio-style)$style=$biblio-style$,$endif$$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$]{biblatex}
+$if(nobiblatex)$$else$$if(bibliography)$
+\usepackage[  %
+    $if(biblio-style)$style=$biblio-style$$else$style=authoryear$endif$,  %
+    $for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$  %
+  ]{biblatex}
+\renewcommand*{\bibfont}{\small}
+\setbeamertemplate{bibliography item}[text]
 $for(bibliography)$
 \addbibresource{$bibliography$}
 $endfor$
-$endif$
+$endif$$endif$
 $if(verbatim-in-note)$
 \usepackage{fancyvrb}
 $endif$
@@ -233,6 +239,18 @@ $if(logo)$
 \logo{\includegraphics{$logo$}}
 $endif$
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Some custom tweaks
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Per-Page footnotes
+\usepackage{perpage}
+\MakePerPage{footnote}
+% emph to textbf in quote
+\let\oldquote\quote
+\def\quote{\oldquote \renewcommand\emph{\textbf}}
+% Disable continuation count of frame titles
+\setbeamertemplate{frametitle continuation}{}
+
 \begin{document}
 $if(title)$
 \frame{\titlepage}
@@ -243,7 +261,7 @@ $include-before$
 
 $endfor$
 $if(toc)$
-\begin{frame}
+\begin{frame}[allowframebreaks]{\vskip 1ex}
 \tableofcontents[hideallsubsections]
 \end{frame}
 
@@ -253,19 +271,21 @@ $body$
 $if(nobiblatex)$$else$$if(bibliography)$
 \bibliographytrue
 $if(biblio-title)$\renewcommand{\bibname}{$biblio-title$}$endif$
-\begin{frame}[allowframebreaks]{\bibname}
+\begin{frame}[allowframebreaks]{\bibname \vskip 0.1ex}
 
 $if(splitbib)$
 $for(splitbib)$
-\section{$splitbib.title$}
+\penalty-200 \textbf{$splitbib.title$} \penalty200
 \printbibliography[heading=none,$splitbib.rule$]
 
 $endfor$
 $else$
 \printbibliography[heading=none]
 
+$endif$
+
 \end{frame}
-$endif$$endif$$endif$
+$endif$$endif$
 
 $for(include-after)$
 $include-after$
