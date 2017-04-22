@@ -246,9 +246,22 @@ $endif$
 \usepackage{perpage}
 \MakePerPage{footnote}
 % emph to textbf in quote
-\AtBeginEnvironment{quote}{\renewcommand\emph{\textbf}}
+\AtBeginEnvironment{quote}{
+    \let\emph\textbf
+  }
 % Disable continuation count of frame titles
 \setbeamertemplate{frametitle continuation}{}
+% Continue frametitles if not explicitly set
+%\let\oldframetitle\frametitle
+%\providecommand\currentframetitle{}
+%\usepackage{ifthen}
+%\renewcommand\frametitle[1]{
+%\renewcommand\currentframetitle{#1}
+%    \ifthenelse{#1 matches empty string}	% if frametitle is empty
+%        {}					% do nothing
+%        {\renewcommand\currentframetitle{#1}}	% else renew current framtitle
+%    \oldframetitle{\currentframetitle}
+%}
 
 
 \begin{document}
