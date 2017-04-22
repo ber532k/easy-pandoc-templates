@@ -1,5 +1,13 @@
-\documentclass{beamer}
-%\documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$babel-lang$,$endif$$if(handout)$handout,$endif$$if(colorlinks)$dvipsnames,$endif$$if(beamer)$ignorenonframetext,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
+%\documentclass{beamer}
+\documentclass[%
+	$if(screen)$aspectratio=$screen$,$endif$		%
+	$if(aspectratio)$aspectratio=$aspectratio$,$endif$	%
+	$if(fontsize)$$fontsize$,$endif$			%
+	$if(lang)$$babel-lang$,$endif$				%
+	$if(handout)$handout,$endif$				%
+	$if(colorlinks)$dvipsnames,$endif$			%
+	$for(classoption)$$classoption$$sep$,$endfor$		%
+    ]{beamer}
 \setbeamertemplate{caption}[numbered]
 \setbeamertemplate{caption label separator}{: }
 \setbeamercolor{caption name}{fg=normal text.fg}
@@ -251,18 +259,30 @@ $endif$
   }
 % Disable continuation count of frame titles
 \setbeamertemplate{frametitle continuation}{}
-% Continue frametitles if not explicitly set
-%\let\oldframetitle\frametitle
-%\providecommand\currentframetitle{}
-%\usepackage{ifthen}
-%\renewcommand\frametitle[1]{
-%\renewcommand\currentframetitle{#1}
-%    \ifthenelse{#1 matches empty string}	% if frametitle is empty
-%        {}					% do nothing
-%        {\renewcommand\currentframetitle{#1}}	% else renew current framtitle
-%    \oldframetitle{\currentframetitle}
-%}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Provide grenewcommand macro
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+\def\gnewcommand{\g@star@or@long\new@command}
+\def\grenewcommand{\g@star@or@long\renew@command}
+\def\g@star@or@long#1{% 
+  \@ifstar{\let\l@ngrel@x\global#1}{\def\l@ngrel@x{\long\global}#1}}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Provide headline command
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\providecommand{\setheadline}[1]{
+    \setbeamertemplate{headline}{
+        \vskip 0.4cm \hskip 0.3cm
+        \Large \usebeamercolor[fg]{structure}
+        #1
+    }
+    % Also make sure there is enough space
+    \setlength{\headsep}{1cm}
+    \addtolength{\textheight}{-1cm}
+}
 
 \begin{document}
 $if(title)$
@@ -279,12 +299,44 @@ $if(toc)$
 \end{frame}
 
 $endif$
-$body$
 
+{		% Body group starts here !!!
+% Only inside body:
+% use frametitle to set header instead of real frametitle
+    \providecommand{\currentframetitle}{}
+    \renewcommand{\frametitle}[1]{\grenewcommand{\currentframetitle}{#1}}
+% print currentframetitle to header
+    \setheadline{\currentframetitle}
+% this must not be applied to section-ish frames
+\let\oldsection\section
+\renewcommand{\section}[1]{{
+	\setbeamertemplate{headline}{}
+	\setlength{\headsep}{0cm}
+	\oldsection{#1}
+    }}
+\let\oldsubsection\subsection
+\renewcommand{\subsection}[1]{{
+	\setbeamertemplate{headline}{}
+	\setlength{\headsep}{0cm}
+	\oldsubsection{#1}
+    }}
+\let\oldsubsubsection\subsubsection
+\renewcommand{\subsubsection}[1]{{
+	\setbeamertemplate{headline}{}
+	\setlength{\headsep}{0cm}
+	\oldsubsubsection{#1}
+    }}
+
+
+$body$
+}		% Body group ends here !!!
+
+{		% Biblio group starts here !!!
 $if(nobiblatex)$$else$$if(bibliography)$
 \bibliographytrue
 $if(biblio-title)$\renewcommand{\bibname}{$biblio-title$}$endif$
-\begin{frame}[allowframebreaks]{\bibname \vskip 0.1ex}
+\setheadline{\bibname}
+\begin{frame}[allowframebreaks]
 
 $if(splitbib)$
 $for(splitbib)$
@@ -299,6 +351,7 @@ $endif$
 
 \end{frame}
 $endif$$endif$
+}		% Biblio group ends here !!!
 
 $for(include-after)$
 $include-after$
