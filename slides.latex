@@ -275,7 +275,7 @@ $if(biblio-title)$\renewcommand{\bibname}{$biblio-title$}$endif$
 
 $if(splitbib)$
 $for(splitbib)$
-\penalty-200 \textbf{$splitbib.title$} \penalty200
+\penalty-100 \textbf{$splitbib.title$} \penalty200
 \printbibliography[heading=none,$splitbib.rule$]
 
 $endfor$
