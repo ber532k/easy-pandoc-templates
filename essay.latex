@@ -273,51 +273,12 @@ $if(titlepage)$
 \includepdf[pages=1]{$titlepage$}
 $else$$if(titlepages)$
 \includepdf[pages=-]{$titlepages$}
-% Manual title setup
+% title setup
 $else$$if(title)$
-\begin{center}
-    {\LARGE\bfseries\sffamily $title$}
-    $if(subtitle)$
-    	\vskip 2ex plus 2ex minus 1ex
-    	{\Large $subtitle$}
-    $endif$
-    $if(author)$
-    \vskip 2ex plus 2ex minus 1ex
-    {
-        $if(subtitle)$\bfseries $endif$
-        \large
-        \ifthenelse{\authornum=1}
-            {$author$}			% Single author: just print the name
-            {				% Multi author: print names in two columns
-                % Some commands for the loop:
-                \gnewcommand{\AuthorOne}{0}
-                \gnewcommand{\AuthorEven}{0}
-            \begin{tabular}[h]{clc}
-            $for(author)$
-            \ifthenelse{\AuthorEven = 0}
-                % Author on the left
-                {
-                    \grenewcommand{\AuthorOne}{$author$}
-                    \grenewcommand{\AuthorEven}{1}
-                }
-                % Author on the right
-                {
-                    % Print this every second run
-                    \AuthorOne && $author$ \\
-                    % Reset everything for next run (if any)
-                    \grenewcommand{\AuthorOne}{0}
-                    \grenewcommand{\AuthorEven}{0}
-                }
-            $endfor$
-            \end{tabular} \\
-            % Catch trailing single author
-            \ifthenelse{\AuthorEven = 1}{\vskip -2.5ex \AuthorOne}{}
-        }
-    }
-    $endif$
-\end{center}
-\vskip 1cm plus 3ex minus 2ex
-\thispagestyle{empty}
+    \title{\bfseries \sffamily $title$}
+    \date{}
+    \author{$for(author)$$author$$sep$ \and $endfor$}
+\maketitle
 $endif$$endif$$endif$
 
 $if(abstract)$
