@@ -1,6 +1,7 @@
 \documentclass[$if(fontsize)$$fontsize$$else$11pt,$endif$$if(lang)$$babel-lang$,$endif$$if(papersize)$$papersize$paper$else$a4paper,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{article}
 \usepackage{lastpage}
 \usepackage{ifthen}
+\usepackage{titling}
 $if(fontfamily)$
 \usepackage[$for(fontfamilyoptions)$$fontfamilyoptions$$sep$,$endfor$]{$fontfamily$}
 $else$
@@ -276,8 +277,8 @@ $else$$if(titlepages)$
 % title setup
 $else$$if(title)$
     \title{\bfseries \sffamily $title$}
-    \date{}
     \author{$for(author)$$author$$sep$ \and $endfor$}
+    \date{}
 \maketitle
 $endif$$endif$$endif$
 
