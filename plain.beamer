@@ -293,7 +293,7 @@ $for(include-before)$
 $include-before$
 
 $endfor$
-$if(toc)$
+$if(notoc)$$else$
 \begin{frame}[allowframebreaks]{\vskip 1ex}
 \tableofcontents[hideallsubsections]
 \end{frame}
