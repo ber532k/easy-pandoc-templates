@@ -280,6 +280,7 @@ $else$$if(title)$
     \author{$for(author)$$author$$sep$ \and $endfor$}
     \date{}
 \maketitle
+\thispagestyle{empty}
 $endif$$endif$$endif$
 
 $if(abstract)$
