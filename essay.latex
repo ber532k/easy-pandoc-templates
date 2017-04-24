@@ -224,6 +224,16 @@ $endif$
 \def\fps@figure{htbp}
 \makeatother
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Provide grenewcommand macro
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+\def\gnewcommand{\g@star@or@long\new@command}
+\def\grenewcommand{\g@star@or@long\renew@command}
+\def\g@star@or@long#1{% 
+  \@ifstar{\let\l@ngrel@x\global#1}{\def\l@ngrel@x{\long\global}#1}}
+\makeatother
+
 $for(header-includes)$
 $header-includes$
 $endfor$
@@ -280,29 +290,28 @@ $else$$if(title)$
             {$author$}			% Single author: just print the name
             {				% Multi author: print names in two columns
                 % Some commands for the loop:
-                \providecommand{\AuthorOne}{0}
-                \providecommand{\AuthorEven}{0}
-            \begin{tabular}[h]{cllc}
+                \gnewcommand{\AuthorOne}{0}
+                \gnewcommand{\AuthorEven}{0}
+            \begin{tabular}[h]{clc}
             $for(author)$
             \ifthenelse{\AuthorEven = 0}
                 % Author on the left
                 {
-                    \renewcommand{\AuthorOne}{$author$}
-                    \renewcommand{\AuthorEven}{1}
+                    \grenewcommand{\AuthorOne}{$author$}
+                    \grenewcommand{\AuthorEven}{1}
                 }
                 % Author on the right
                 {
                     % Print this every second run
-                    \AuthorOne &&& $author$ \\
+                    \AuthorOne && $author$ \\
                     % Reset everything for next run (if any)
-                    \renewcommand{\AuthorOne}{0}
-                    \renewcommand{\AuthorEven}{0}
+                    \grenewcommand{\AuthorOne}{0}
+                    \grenewcommand{\AuthorEven}{0}
                 }
             $endfor$
-            \end{tabular}
-            \par
+            \end{tabular} \\
             % Catch trailing single author
-            \ifthenelse{\AuthorEven = 0}{\AuthorOne}{}
+            \ifthenelse{\AuthorEven = 1}{\vskip -2.5ex \AuthorOne}{}
         }
     }
     $endif$
