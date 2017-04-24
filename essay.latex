@@ -91,11 +91,7 @@ $if(colorlinks)$
 $endif$
 \hypersetup{
  $if(title)$
-            pdftitle={$title$
-	      $if(subtitle)$
-		: $subtitle$
-              $endif$
-            },
+            pdftitle={$title$$if(subtitle)$: $subtitle$$endif$},
  $endif$
  $if(author)$
             pdfauthor={$for(author)$$author$$sep$, $endfor$},
@@ -232,58 +228,28 @@ $for(header-includes)$
 $header-includes$
 $endfor$
 
-$if(title)$
-\title{$title$$if(thanks)$\thanks{$thanks$}$endif$}
-$endif$
-$if(subtitle)$
-\providecommand{\subtitle}[1]{}
-\subtitle{$subtitle$}
-$endif$
-$if(author)$
-\author{{$if(subtitle)$\bfseries$endif$
-	$for(author)$$author$$sep$ \and $endfor$}}
-$endif$
-$if(institute)$
-\providecommand{\institute}[1]{}
-\institute{$for(institute)$$institute$$sep$ \and $endfor$}
-$endif$
 \date{$date$}
 
-$if(titlepage)$
-\renewcommand{\maketitle}{%
-	\includepdf[pages=1]{$titlepage$}
-}
-$else$$if(titlepages)$
-\renewcommand{\maketitle}{%
-	\includepdf[pages=-]{$titlepages$}
-}
-$endif$$endif$
+% Provide \authornum (1 for single-author, 2 for multi-author)
+% Only use inside if(author): If no author is set, the command is not provided
+$if(author)$
+    \providecommand{\authornum}{0}
+    $for(author)$
+        \ifthenelse{\authornum=1}
+            {\renewcommand{\authornum}{2}}{}
+        \ifthenelse{\authornum=0}
+            {\renewcommand{\authornum}{1}}{}
+    $endfor$
+$endif$
 
-% Title and page heads
-\usepackage{titling}
-\pretitle{\begin{center}\LARGE\bfseries\sffamily}
-\posttitle{\par\end{center}\vskip 0.5em
-   $if(subtitle)$
-   	\vskip 0.5em
-	\begin{center}\large
-		$subtitle$
-	\par\end{center}\vskip 1.5em
-   $endif$
-}
+
+% Page heads
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\rhead{$author$}
 \lhead{$title$}
+\rhead{$if(author)$\ifthenelse{\authornum=1}{$author$}{$author$ et al.}$endif$}
 
 \begin{document}
-
-$if(title)$
-\maketitle
-$else$$if(titlepage)$
-\maketitle
-$else$$if(titlepages)$
-\maketitle
-$endif$$endif$$endif$
 
 % Page Numbering:
 \pagenumbering{arabic}	% Crucial: Else \pageref{LastPage}
@@ -291,6 +257,59 @@ $endif$$endif$$endif$
 \ifthenelse{\pageref{LastPage}=1}
 	{\thispagestyle{empty}}    % SINGLE-PAGE: No numbering
 	{\thispagestyle{plain}}    % MULTI-PAGE:  Arabic numbering
+
+% Use titlepage if specified
+$if(titlepage)$
+\includepdf[pages=1]{$titlepage$}
+$else$$if(titlepages)$
+\includepdf[pages=-]{$titlepages$}
+% Manual title setup
+$else$$if(title)$
+\begin{center}
+    {\LARGE\bfseries\sffamily $title$}
+    $if(subtitle)$
+    	\vskip 2ex plus 2ex minus 1ex
+    	{\Large $subtitle$}
+    $endif$
+    $if(author)$
+    \vskip 2ex plus 2ex minus 1ex
+    {
+        $if(subtitle)$\bfseries $endif$
+        \large
+        \ifthenelse{\authornum=1}
+            {$author$}			% Single author: just print the name
+            {				% Multi author: print names in two columns
+                % Some commands for the loop:
+                \providecommand{\AuthorOne}{0}
+                \providecommand{\AuthorEven}{0}
+            \begin{tabular}[h]{cllc}
+            $for(author)$
+            \ifthenelse{\AuthorEven = 0}
+                % Author on the left
+                {
+                    \renewcommand{\AuthorOne}{$author$}
+                    \renewcommand{\AuthorEven}{1}
+                }
+                % Author on the right
+                {
+                    % Print this every second run
+                    \AuthorOne &&& $author$ \\
+                    % Reset everything for next run (if any)
+                    \renewcommand{\AuthorOne}{0}
+                    \renewcommand{\AuthorEven}{0}
+                }
+            $endfor$
+            \end{tabular}
+            \par
+            % Catch trailing single author
+            \ifthenelse{\AuthorEven = 0}{\AuthorOne}{}
+        }
+    }
+    $endif$
+\end{center}
+\vskip 1cm plus 3ex minus 2ex
+\thispagestyle{empty}
+$endif$$endif$$endif$
 
 $if(abstract)$
 \begin{abstract}
