@@ -3,7 +3,9 @@
 ## Purpose
 
 This template is designed for short papers. Other than that it's quite
-similar to the hausarbeit template.
+similar to the hausarbeit template. This template also performs well
+for just printing out small parts of text or even for printing out
+handouts for beamer slides.
 
 ## Available Extensions
 

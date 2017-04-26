@@ -35,8 +35,8 @@ color
   ``color: black`` (obviously) turns of coloring.
   See <https://en.wikibooks.org/wiki/LaTeX/Colors>
   for further information on available colours.
-  (The template uses the ``xcolor`` package for
-  in order to make a maximum number of colours
+  (The template uses the ``xcolor`` package in
+  order to make a maximum number of colours
   available.)
 
 author, title
@@ -47,4 +47,4 @@ author, title
 
 ## Available Extensions
 
-- Signature (only sign-at)
+- Signature (only place)
