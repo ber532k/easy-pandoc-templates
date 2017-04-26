@@ -1,7 +1,7 @@
 .PHONY: pdf
 pdf:
 	mkpdf -d -p \
-	-t lebenslauf.latex \
+	-t moderncv.latex \
 	-o ../users-guide.pdf \
 	\
 	meta.txt \
