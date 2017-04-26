@@ -1,4 +1,4 @@
-# lebenslauf.latex
+# moderncv.latex
 
 ## Purpose
 
