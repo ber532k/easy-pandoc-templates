@@ -10,7 +10,7 @@ pdf:
 	doc-essay.txt \
 	doc-letter.txt \
 	doc-contract.txt \
-	doc-lebenslauf.txt \
+	doc-moderncv.txt \
 	how-to-use-variables-txt \
 	general-settings.txt \
 	extension-*
