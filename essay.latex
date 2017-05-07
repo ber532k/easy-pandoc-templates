@@ -274,7 +274,7 @@ $else$$if(titlepages)$
 \includepdf[pages=-]{$titlepages$}
 % title setup
 $else$$if(title)$
-    \title{\bfseries \sffamily $title$}
+    \title{\bfseries $title$}
     \author{$for(author)$$author$$sep$ \and $endfor$}
     \date{}
 \maketitle
