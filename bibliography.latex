@@ -1,4 +1,4 @@
-\documentclass[$if(fontsize)$$fontsize$$else$12pt,$endif$$if(lang)$$babel-lang$,$endif$$if(papersize)$$papersize$paper$else$a4paper,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{article}
+\documentclass[$if(fontsize)$$fontsize$,$else$12pt,$endif$$if(lang)$$babel-lang$,$endif$$if(papersize)$$papersize$paper$else$a4paper,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{article}
 \usepackage{lastpage}
 \usepackage{ifthen}
 $if(fontfamily)$
