@@ -99,6 +99,7 @@ $endif$
 \newif\ifbibliography
 $if(nobiblatex)$$else$$if(bibliography)$
 \usepackage[  %
+    isbn=false,doi=false,  %
     $if(biblio-style)$style=$biblio-style$$else$style=authoryear$endif$,  %
     $for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$  %
   ]{biblatex}
