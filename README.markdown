@@ -31,7 +31,8 @@ Run ``pandoc`` with ``-t latex`` or ``-t beamer`` and ``--template=``
 options if you want to use these templates. ``--biblatex`` option is
 required for templates including a bibliography. Afterwords just run
 any program producing a pdf from the obtained latex-source
-(e. g. ``latexmk``)
+(e. g. ``latexmk``). Testing is done with the xelatex engine, but
+pdflatex or lualatex will probably also work all right.
 
 
 # Known Bugs

@@ -1,0 +1,22 @@
+# plain.beamer
+
+This template is a slightly modified version of pandoc's
+default.beamer. Everything that's available in default.beamer should
+work with this template as well.
+
+## Custom Variables
+
+slidenumbers
+: Number slides (pretty much like you would pages).
+Value: true or empty [true| ].
+
+titleblock
+: Instead of the default title slide, print a custom slide containing
+title, possibly a subtitle and the block of text specified as
+titleblock. This is useful if you have quite specific ideas about what
+information needs to be included on the title slide.
+
+
+## Available Extensions
+
+- splitbib
