@@ -261,6 +261,15 @@ $endif$
   }
 % Disable continuation count of frame titles
 \setbeamertemplate{frametitle continuation}{}
+% Page numbers
+$if(slidenumbers)$
+\setbeamertemplate{footline}{
+	\begin{flushright}
+	\normalsize \usebeamercolor[fg]{structure}
+	\insertframenumber \phantom{xx}
+	\end{flushright}
+	}
+$endif$
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Provide grenewcommand macro
@@ -290,6 +299,7 @@ $endif$
 $if(title)$
 $if(titleblock)$
 	\begin{frame}
+	\thispagestyle{empty}
 	\vskip 0.1\paperheight plus 0.05\paperheight minus 0.05\paperheight
 	{\LARGE \usebeamercolor[fg]{structure}
 	$title$}
@@ -298,7 +308,7 @@ $if(titleblock)$
 	\end{frame}
 
 $else$
-\frame{\titlepage}
+\frame{\thispagestyle{empty} \titlepage}
 $endif$
 $endif$
 
@@ -324,6 +334,7 @@ $endif$
 \let\oldsection\section
 \renewcommand{\section}[1]{{
 	\setbeamertemplate{headline}{}
+	\thispagestyle{empty}
 	\setlength{\headsep}{0cm}
 	\oldsection{#1}
 	\frametitle{#1}
