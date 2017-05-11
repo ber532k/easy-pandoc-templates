@@ -302,7 +302,9 @@ $if(titleblock)$
 	\thispagestyle{empty}
 	\vskip 0.1\paperheight plus 0.05\paperheight minus 0.05\paperheight
 	{\LARGE \usebeamercolor[fg]{structure}
-	$title$}
+	$title$
+	$if(subtitle)$ \vskip 6pt \Large $subtitle$ $endif$
+	}
 	\vfill
 	{\small $titleblock$}
 	\end{frame}
