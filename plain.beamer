@@ -270,6 +270,13 @@ $if(slidenumbers)$
 	\end{flushright}
 	}
 $endif$
+% Gliederung / Outline
+\addto\captionsenglish{\renewcommand{\contentsname}{Outline}}
+\addto\captionsgerman{\renewcommand{\contentsname}{Gliederung}}
+% TOC color
+\setbeamercolor{section in toc}{fg=black}
+\setbeamercolor{subsection in toc}{fg=black}
+\setbeamercolor{subsubsubsection in toc}{fg=black}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Provide grenewcommand macro
@@ -300,13 +307,13 @@ $if(title)$
 $if(titleblock)$
 	\begin{frame}
 	\thispagestyle{empty}
-	\vskip 0.1\paperheight plus 0.05\paperheight minus 0.05\paperheight
 	{\LARGE \usebeamercolor[fg]{structure}
 	$title$
 	$if(subtitle)$ \vskip 6pt \Large $subtitle$ $endif$
 	}
 	\vfill
 	{\small $titleblock$}
+	\vskip -2.5\footheight
 	\end{frame}
 
 $else$
@@ -319,7 +326,8 @@ $include-before$
 
 $endfor$
 $if(notoc)$$else$
-\begin{frame}[allowframebreaks]{\vskip 1ex}
+\begin{frame}[allowframebreaks]{\contentsname}
+\vskip 4ex
 \tableofcontents[hideallsubsections]
 \end{frame}
 
