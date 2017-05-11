@@ -113,11 +113,11 @@ $if(verbatim-in-note)$
 \usepackage{fancyvrb}
 $endif$
 \hypersetup{
-$if(title-meta)$
-            pdftitle={$title-meta$},
+$if(title)$
+            pdftitle={$title$},
 $endif$
-$if(author-meta)$
-            pdfauthor={$author-meta$},
+$if(author)$
+            pdfauthor={$author$},
 $endif$
 $if(keywords)$
             pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$},
@@ -288,7 +288,18 @@ $endif$
 
 \begin{document}
 $if(title)$
+$if(titleblock)$
+	\begin{frame}
+	\vskip 0.1\paperheight plus 0.05\paperheight minus 0.05\paperheight
+	{\LARGE \usebeamercolor[fg]{structure}
+	$title$}
+	\vfill
+	{\small $titleblock$}
+	\end{frame}
+
+$else$
 \frame{\titlepage}
+$endif$
 $endif$
 
 $for(include-before)$
