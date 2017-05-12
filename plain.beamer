@@ -273,10 +273,6 @@ $endif$
 % Gliederung / Outline
 \addto\captionsenglish{\renewcommand{\contentsname}{Outline}}
 \addto\captionsgerman{\renewcommand{\contentsname}{Gliederung}}
-% TOC color
-\setbeamercolor{section in toc}{fg=black}
-\setbeamercolor{subsection in toc}{fg=black}
-\setbeamercolor{subsubsubsection in toc}{fg=black}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Provide grenewcommand macro
@@ -327,8 +323,8 @@ $include-before$
 $endfor$
 $if(notoc)$$else$
 \begin{frame}[allowframebreaks]{\contentsname}
-\vskip 4ex
-\tableofcontents[hideallsubsections]
+\vskip .2\textheight minus .1\textheight
+\tableofcontents%[hideallsubsections]
 \end{frame}
 
 $endif$
@@ -342,25 +338,30 @@ $endif$
     \setheadline{\currentframetitle}
 % this must not be applied to section-ish frames
 \let\oldsection\section
+\let\oldsubsection\subsection
+\let\oldsubsubsection\subsubsection
 \renewcommand{\section}[1]{{
 	\setbeamertemplate{headline}{}
 	\thispagestyle{empty}
 	\setlength{\headsep}{0cm}
-	\oldsection{#1}
+	\addcontentsline{toc}{section}{#1 \par}
+	\frame{\center \usebeamercolor[fg]{structure} \LARGE #1}
 	\frametitle{#1}
     }}
-\let\oldsubsection\subsection
 \renewcommand{\subsection}[1]{{
 	\setbeamertemplate{headline}{}
+	\thispagestyle{empty}
 	\setlength{\headsep}{0cm}
-	\oldsubsection{#1}
+	\addcontentsline{toc}{section}{#1 \par}
+	\frame{\center \usebeamercolor[fg]{structure} \Large #1}
 	\frametitle{#1}
     }}
-\let\oldsubsubsection\subsubsection
 \renewcommand{\subsubsection}[1]{{
 	\setbeamertemplate{headline}{}
+	\thispagestyle{empty}
 	\setlength{\headsep}{0cm}
-	\oldsubsubsection{#1}
+	\addcontentsline{toc}{section}{#1 \par}
+	\frame{\center \usebeamercolor[fg]{structure} \Large #1}
 	\frametitle{#1}
     }}
 
