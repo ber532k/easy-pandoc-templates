@@ -177,6 +177,7 @@ $if(strikeout)$
 \pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 $endif$
 $if(indent)$
+\setlength{\parskip}{12pt plus 4pt minus 2pt}
 $else$
 \IfFileExists{parskip.sty}{%
 \usepackage{parskip}
