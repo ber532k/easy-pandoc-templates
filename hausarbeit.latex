@@ -225,6 +225,13 @@ $endif$
 \def\fps@figure{htbp}
 \makeatother
 
+% increase space above footnote separator
+\renewcommand{\footnoterule}{%
+    \vskip 6ex plus 4ex minus 3ex
+    \hrule width .4\textwidth height .4pt
+    \kern .5ex
+}
+
 $for(header-includes)$
 $header-includes$
 $endfor$
@@ -306,7 +313,8 @@ $endif$
 $body$
 
 $if(nobiblatex)$$else$$if(bibliography)$
-{\penalty-2000}
+%{\penalty-2000}
+\filbreak
 $if(biblio-title)$\renewcommand{\bibname}{$biblio-title$}$endif$
 \section{\bibname}
 $if(splitbib)$
