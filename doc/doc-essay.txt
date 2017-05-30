@@ -12,3 +12,4 @@ handouts for beamer slides.
 - Titlepage
 - Splitbib
 - Appendix
+- Watermark

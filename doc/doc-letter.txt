@@ -6,7 +6,8 @@ This is a template for formal letters based on scrlttr2.
 
 ## Available Extensions
 
-- letter
+- Letter
+- Watermark
 
 ## Custom options
 

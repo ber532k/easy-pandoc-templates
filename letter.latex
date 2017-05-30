@@ -284,6 +284,12 @@ $if(backaddress)$\setkomavar{backaddress}{$backaddress$}\KOMAoptions{backaddress
 % Use Subject Title
 \KOMAoptions{subject=titled}
 
+% Watermark
+$if(watermark)$
+\usepackage{draftwatermark}
+\SetWatermarkText{$watermark$}
+$endif$
+
 \begin{document}
 
 % Set german label to Betreff instead of Betrifft
@@ -300,11 +306,15 @@ $include-before$
 
 $endfor$
 
+$if(opening)$
 \opening{\usekomavar{opening}}
+$endif$
 
 $body$
 
+$if(closing)$
 \closing{\usekomavar{closing}}
+$endif$
 
 \vfill
 \filbreak

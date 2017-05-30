@@ -215,6 +215,12 @@ $if(author)$
 $endif$
 \date{$date$}
 
+% Watermark
+$if(watermark)$
+\usepackage{draftwatermark}
+\SetWatermarkText{$watermark$}
+$endif$
+
 \begin{document}
 
 % Page Numbering:

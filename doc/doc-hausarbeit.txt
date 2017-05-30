@@ -9,3 +9,4 @@ This template is designed for student's papers.
 - Titlepage
 - Splitbib
 - Appendix
+- Watermark

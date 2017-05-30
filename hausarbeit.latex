@@ -262,6 +262,12 @@ $else$$if(titlepages)$
 }
 $endif$$endif$
 
+% Watermark
+$if(watermark)$
+\usepackage{draftwatermark}
+\SetWatermarkText{$watermark$}
+$endif$
+
 
 \begin{document}
 $if(title)$

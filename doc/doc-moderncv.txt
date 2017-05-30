@@ -48,3 +48,4 @@ author, title
 ## Available Extensions
 
 - Signature (only place)
+- Watermark

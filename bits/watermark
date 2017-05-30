@@ -1,0 +1,6 @@
+% Watermark
+$if(watermark)$
+\usepackage{draftwatermark}
+\SetWatermarkText{$watermark$}
+$endif$
+

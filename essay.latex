@@ -267,6 +267,12 @@ $endif$
 \lhead{$title$}
 \rhead{$if(author)$\ifthenelse{\authornum=1}{$author$}{$author$ et al.}$endif$}
 
+% Watermark
+$if(watermark)$
+\usepackage{draftwatermark}
+\SetWatermarkText{$watermark$}
+$endif$
+
 \begin{document}
 
 % Page Numbering:

@@ -8,3 +8,4 @@ documents and declarations.
 ## Available Extensions
 
 - Signature (multiple)
+- Watermark

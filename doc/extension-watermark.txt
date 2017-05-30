@@ -1,0 +1,7 @@
+# Extension: Watermark
+
+watermark
+: If set, the specified text will be inserted as a watermark on every page.
+E. g. ``watermark: Draft`` will print "Draft" as watermark.
+This somewhat conflicts with titlepage and appendix however, since the Watermark will not be in the background for these title- or appended pages.
+

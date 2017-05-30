@@ -1,4 +1,4 @@
-# Extension: letter
+# Extension: Letter
 
 from
 : Sender's name and postal address
