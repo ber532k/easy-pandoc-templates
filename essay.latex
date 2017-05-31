@@ -131,11 +131,8 @@ $endif$
 $if(nobiblatex)$
 $else$
 \usepackage[%
-        $if(biblatexoptions)$
+                backend=biber,authordate,isbn=false,doi=false,    %
                 $for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$    %
-        $else$
-                backend=biber,authordate,isbn=false,doi=false    %
-        $endif$
         $if(biblio-style)$style=$biblio-style$,$endif$    %
         ]{$if(biblatex-version)$$biblatex-version$$else$biblatex-chicago$endif$}
 $for(bibliography)$
