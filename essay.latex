@@ -258,11 +258,13 @@ $if(author)$
 $endif$
 
 
+$if(title)$
 % Page heads
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \lhead{$title$}
 \rhead{$if(author)$\ifthenelse{\authornum=1}{$author$}{$author$ et al.}$endif$}
+$endif$
 
 % Watermark
 $if(watermark)$
