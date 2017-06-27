@@ -224,6 +224,7 @@ $endif$
 
 % increase space above footnote separator
 \renewcommand{\footnoterule}{%
+    \vfill
     \vskip 6ex plus 4ex minus 3ex
     \hrule width .4\textwidth height .4pt
     \kern .5ex
