@@ -57,15 +57,6 @@ $if(CJKmainfont)$
     \setCJKmainfont[$for(CJKoptions)$$CJKoptions$$sep$,$endfor$]{$CJKmainfont$}
 $endif$
 \fi
-$if(theme)$
-\usetheme[$for(themeoptions)$$themeoptions$$sep$,$endfor$]{$theme$}
-$endif$
-$if(colortheme)$
-\usecolortheme{$colortheme$}
-$endif$
-$if(fonttheme)$
-\usefonttheme{$fonttheme$}
-$endif$
 $if(mainfont)$
 \usefonttheme{serif} % use mainfont rather than sansfont for slide text
 $endif$
@@ -250,14 +241,45 @@ $if(logo)$
 $endif$
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Some (Color) Themes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Default Theme tweaks
+\definecolor{default}{rgb}{0.2,0.2,0.7}
+\setbeamercolor{page number}{fg=default}
+\providecommand{\altemph}{\textbf}
+
+% Custom Themes
+$if(theme)$
+\IfEq{$theme$}{dark}
+    {
+    \usepackage{tikz}
+    \setbeamercolor{normal text}{fg=lightgray}
+    \setbeamercolor{structure}{fg=white}
+    \setbeamercolor{itemize item}{fg=gray}
+    \setbeamercolor{footnote mark}{fg=lightgray}
+    \setbeamercolor{page number}{fg=lightgray}
+    \setbeamertemplate{background}{
+        \tikz \filldraw[darkgray]
+        (current page.north west) rectangle (current page.south east);
+        }
+    \renewcommand{\altemph}[1]{{\usebeamercolor[fg]{structure} #1}}
+    }
+
+$endif$
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Some custom tweaks
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Per-Page footnotes
 \usepackage{perpage}
 \MakePerPage{footnote}
-% emph to textbf in quote
+% emph to custom altemph in quote
 \AtBeginEnvironment{quote}{
-    \let\emph\textbf
+    \let\emph\altemph
   }
 % Disable continuation count of frame titles
 \setbeamertemplate{frametitle continuation}{}
@@ -265,7 +287,7 @@ $endif$
 $if(slidenumbers)$
 \setbeamertemplate{footline}{
 	\begin{flushright}
-	\normalsize \usebeamercolor[fg]{structure}
+	\normalsize \usebeamercolor[fg]{page number}
 	\insertframenumber \phantom{xx}
 	\end{flushright}
 	}
