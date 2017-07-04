@@ -230,6 +230,9 @@ $endif$
     \kern .5ex
 }
 
+% Force uppercase Ibid in footnnotes
+\renewcommand*{\mkibid}[1]{\MakeCapital{#1}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Provide grenewcommand macro
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -245,27 +248,6 @@ $header-includes$
 $endfor$
 
 \date{$date$}
-
-% Provide \authornum (1 for single-author, 2 for multi-author)
-% Only use inside if(author): If no author is set, the command is not provided
-$if(author)$
-    \providecommand{\authornum}{0}
-    $for(author)$
-        \ifthenelse{\authornum=1}
-            {\renewcommand{\authornum}{2}}{}
-        \ifthenelse{\authornum=0}
-            {\renewcommand{\authornum}{1}}{}
-    $endfor$
-$endif$
-
-
-$if(title)$
-% Page heads
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\lhead{$title$}
-\rhead{$if(author)$\ifthenelse{\authornum=1}{$author$}{$author$ et al.}$endif$}
-$endif$
 
 % Watermark
 $if(watermark)$
