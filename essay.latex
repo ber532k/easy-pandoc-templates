@@ -273,6 +273,46 @@ $if(watermark)$
 \SetWatermarkText{$watermark$}
 $endif$
 
+% Titlepage
+$if(titlepage)$
+\usepackage{xstring}
+\IfEndWith{$titlepage$}{.pdf}{
+    \usepackage{includepdf}
+    \renewcommand{\maketitle}{%
+        \includepdf[pages=1]{$titlepage$}
+    }
+  }
+\IfEndWith{$titlepage$}{.tex}{
+    \renewcommand{\maketitle}{%
+        {
+        \thispagestyle{empty}
+        \setstretch{1}
+        \input{$titlepage$}
+        \newpage
+        }
+    }
+  }
+$else$$if(titlepages)$
+\usepackage{xstring}
+\IfEndWith{$titlepage$}{.pdf}{
+    \usepackage{includepdf}
+    \renewcommand{\maketitle}{%
+        \includepdf[pages=-]{$titlepage$}
+    }
+  }
+\IfEndWith{$titlepage$}{.tex}{
+    \renewcommand{\maketitle}{%
+        {
+        \thispagestyle{empty}
+        \setstretch{1}
+        \input{$titlepage$}
+        \newpage
+        }
+    }
+  }
+$endif$$endif$
+
+
 \begin{document}
 
 % Page Numbering:
@@ -284,9 +324,9 @@ $endif$
 
 % Use titlepage if specified
 $if(titlepage)$
-\includepdf[pages=1]{$titlepage$}
+\maketitle
 $else$$if(titlepages)$
-\includepdf[pages=-]{$titlepages$}
+\maketitle
 % title setup
 $else$$if(title)$
     \title{\bfseries $title$}

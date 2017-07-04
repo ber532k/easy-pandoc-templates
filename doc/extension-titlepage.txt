@@ -1,10 +1,7 @@
 # Extension: Titlepage
 
 titlepage
-: Use the first page of a given pdf file as titlepage rather than some automatically generated one.
-  Value: filename.pdf
+: Include a given page as the titlepage. Currently handles pdf and latex and depends on filename-endings specifying the format as `.pdf` or `.tex`.
 
 titlepages
-: Use all pages of a given pdf as titlepages.
-  Value: filename.pdf
-
+: Same as titlepage but for force to include all pages from the supplied file.

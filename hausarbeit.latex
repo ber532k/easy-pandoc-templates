@@ -9,11 +9,7 @@ $endif$
 \AtBeginEnvironment{quote}{\smaller}
 $if(append)$
 \usepackage{pdfpages}
-$else$$if(titlepage)$
-\usepackage{pdfpages}
-$else$$if(titlepages)$
-\usepackage{pdfpages}
-$endif$$endif$$endif$
+$endif$
 $if(linestretch)$
 \usepackage{setspace}
 \setstretch{$linestretch$}
@@ -254,13 +250,41 @@ $endif$
 \date{$date$}
 
 $if(titlepage)$
-\renewcommand{\maketitle}{%
-	\includepdf[pages=1]{$titlepage$}
-}
+\usepackage{xstring}
+\IfEndWith{$titlepage$}{.pdf}{
+    \usepackage{includepdf}
+    \renewcommand{\maketitle}{%
+        \includepdf[pages=1]{$titlepage$}
+    }
+  }
+\IfEndWith{$titlepage$}{.tex}{
+    \renewcommand{\maketitle}{%
+        {
+        \thispagestyle{empty}
+        \setstretch{1}
+        \input{$titlepage$}
+        \newpage
+        }
+    }
+  }
 $else$$if(titlepages)$
-\renewcommand{\maketitle}{%
-	\includepdf[pages=-]{$titlepages$}
-}
+\usepackage{xstring}
+\IfEndWith{$titlepage$}{.pdf}{
+    \usepackage{includepdf}
+    \renewcommand{\maketitle}{%
+        \includepdf[pages=-]{$titlepage$}
+    }
+  }
+\IfEndWith{$titlepage$}{.tex}{
+    \renewcommand{\maketitle}{%
+        {
+        \thispagestyle{empty}
+        \setstretch{1}
+        \input{$titlepage$}
+        \newpage
+        }
+    }
+  }
 $endif$$endif$
 
 % Watermark
