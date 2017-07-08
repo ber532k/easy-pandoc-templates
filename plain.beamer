@@ -1,12 +1,12 @@
 %\documentclass{beamer}
 \documentclass[%
-	$if(screen)$aspectratio=$screen$,$endif$		%
-	$if(aspectratio)$aspectratio=$aspectratio$,$endif$	%
-	$if(fontsize)$$fontsize$,$endif$			%
-	$if(lang)$$babel-lang$,$endif$				%
-	$if(handout)$handout,$endif$				%
-	$if(colorlinks)$dvipsnames,$endif$			%
-	$for(classoption)$$classoption$$sep$,$endfor$		%
+	$if(screen)$aspectratio=$screen$,$endif$            %
+	$if(aspectratio)$aspectratio=$aspectratio$,$endif$  %
+	$if(fontsize)$$fontsize$,$endif$                    %
+	$if(lang)$$babel-lang$,$else$ngerman,$endif$        %
+	$if(handout)$handout,$endif$                        %
+	$if(colorlinks)$dvipsnames,$endif$                  %
+	$for(classoption)$$classoption$$sep$,$endfor$       %
     ]{beamer}
 \setbeamertemplate{caption}[numbered]
 \setbeamertemplate{caption label separator}{: }
@@ -73,20 +73,20 @@ $endif$
 \usepackage{microtype}
 \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-$if(lang)$
+
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
-  \usepackage[shorthands=off,$for(babel-otherlangs)$$babel-otherlangs$,$endfor$main=$babel-lang$]{babel}
+  \usepackage[shorthands=off,$for(babel-otherlangs)$$babel-otherlangs$,$endfor$main=$if(babel-lang)$$babel-lang$$else$english$endif$]{babel}
 $if(babel-newcommands)$
   $babel-newcommands$
 $endif$
 \else
   \usepackage{polyglossia}
-  \setmainlanguage[$polyglossia-lang.options$]{$polyglossia-lang.name$}
+  \setmainlanguage[$polyglossia-lang.options$]{$if(polyglossia-lang.name)$$polyglossia-lang.name$$else$english$endif$}
 $for(polyglossia-otherlangs)$
   \setotherlanguage[$polyglossia-otherlangs.options$]{$polyglossia-otherlangs.name$}
 $endfor$
 \fi
-$endif$
+
 \newif\ifbibliography
 $if(nobiblatex)$$else$$if(bibliography)$
 \usepackage[  %
@@ -293,7 +293,7 @@ $if(slidenumbers)$
 	}
 $endif$
 % Gliederung / Outline
-\addto\captionsenglish{\renewcommand{\contentsname}{Outline}}
+\addto\captionsenglish{\renewcommand{\contentsname}{Gliederung}}
 \addto\captionsgerman{\renewcommand{\contentsname}{Gliederung}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
