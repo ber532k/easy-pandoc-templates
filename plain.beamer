@@ -257,6 +257,8 @@ $if(theme)$
     \setbeamercolor{normal text}{fg=lightgray}
     \setbeamercolor{structure}{fg=white}
     \setbeamercolor{itemize item}{fg=gray}
+    \setbeamercolor{itemize subitem}{fg=gray}
+    \setbeamercolor{itemize subsubitem}{fg=gray}
     \setbeamercolor{footnote mark}{fg=lightgray}
     \setbeamercolor{page number}{fg=lightgray}
     \setbeamertemplate{background}{
