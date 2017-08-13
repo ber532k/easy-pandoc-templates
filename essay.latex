@@ -230,6 +230,8 @@ $endif$
     \kern .5ex
 }
 
+% Force uppercase Ibid in footnnotes
+\renewcommand*{\mkibid}[1]{\MakeCapital{#1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Provide grenewcommand macro
