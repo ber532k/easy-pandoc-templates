@@ -131,7 +131,7 @@ $else$
 	$if(biblatexoptions)$
 		$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$    %
 	$else$
-		backend=biber,style=verbose-ibid,isbn=false,doi=false    %
+		backend=biber,style=verbose-ibid,isbn=false,doi=false,urldate=long    %
 	$endif$
 	$if(biblio-style)$style=$biblio-style$,$endif$    %
 	]{$if(biblatex-version)$$biblatex-version$$else$biblatex$endif$}
